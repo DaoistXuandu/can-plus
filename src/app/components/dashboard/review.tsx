@@ -29,17 +29,21 @@ export default function Review() {
                     </div>
                 </div>
                 <div className="md:w-8/12 items-center flex mt-5 md:mt-0">
-                    <div className="text-md md:text-xl h-40 md:h-48 overflow-hidden scroll-auto text-ellipsis">
+                    <div className="text-md md:text-xl h-40 md:h-48 overflow-hidden scroll-smooth overflow-scroll text-ellipsis">
                         {review_user[reviewIndex].comment}
                     </div>
                 </div>
             </div>
             <div className="flex flex-row mt-5 md:space-x-5 w-full">
-                <div className="w-fit h-fit p-4 bg-white rounded-full shadow-lg cursor-pointer hover:scale-110" onClick={e => (setReviewIndex((reviewIndex + review_user.length - 1) % review_user.length))}>
-                    <LeftArrow size={30} stroke={2} />
+                <div className="w-1/2 md:w-fit">
+                    <div className="w-fit h-fit p-4 bg-white rounded-full shadow-lg cursor-pointer hover:scale-110" onClick={e => (setReviewIndex((reviewIndex + review_user.length - 1) % review_user.length))}>
+                        <LeftArrow size={30} stroke={2} />
+                    </div>
                 </div>
-                <div className="w-fit h-fit p-4 bg-white rounded-full shadow-lg cursor-pointer hover:scale-110" onClick={e => (setReviewIndex((reviewIndex + review_user.length + 1) % review_user.length))}>
-                    <RightArrow size={30} stroke={2} />
+                <div className="w-1/2 flex justify-end md:w-fit">
+                    <div className="w-fit h-fit p-4 bg-white rounded-full shadow-lg cursor-pointer hover:scale-110" onClick={e => (setReviewIndex((reviewIndex + review_user.length + 1) % review_user.length))}>
+                        <RightArrow size={30} stroke={2} />
+                    </div>
                 </div>
             </div>
         </div>
