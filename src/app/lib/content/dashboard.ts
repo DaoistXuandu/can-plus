@@ -9,7 +9,7 @@ const navbar_auth = {
     },
     signup: {
         comment: "Daftar",
-        url: "/pages/signup"
+        url: "/pages/signUp"
     }
 }
 
