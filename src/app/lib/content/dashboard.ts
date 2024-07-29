@@ -101,6 +101,8 @@ const footer_social = {
     youtube: "CanPlus",
 }
 
+
+
 export {
     navbar_auth,
     navbar_link,
