@@ -1,7 +1,7 @@
-import { review_title, review_user } from "@/lib/content/dashboard";
-import { maven_pro } from "@/lib/font";
-import LeftArrow from "@/lib/icon/left_arrow";
-import RightArrow from "@/lib/icon/right_arrow";
+import { review_title, review_user } from "@/app/lib/content/dashboard";
+import { maven_pro } from "@/app/lib/font";
+import LeftArrow from "@/app/lib/icon/left_arrow";
+import RightArrow from "@/app/lib/icon/right_arrow";
 import { useEffect, useState } from "react";
 
 export default function Review() {
@@ -11,6 +11,7 @@ export default function Review() {
     useEffect(() => {
         setWidth(window.innerWidth)
     }, [])
+
 
     return (
         <div className={`w-full ${maven_pro.className} pl-5 pr-5 flex flex-col`}>

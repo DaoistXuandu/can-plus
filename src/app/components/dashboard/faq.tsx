@@ -1,6 +1,6 @@
-import { faq_issue, faq_title } from "@/lib/content/dashboard";
-import { maven_pro } from "@/lib/font";
-import DropDown from "@/lib/icon/dropdown";
+import { faq_issue, faq_title } from "@/app/lib/content/dashboard";
+import { maven_pro } from "@/app/lib/font";
+import DropDown from "@/app/lib/icon/dropdown";
 import { useEffect, useState } from "react";
 
 export default function FAQ() {
@@ -13,6 +13,8 @@ export default function FAQ() {
         })
         setQuestion(nextQuestion)
     }
+
+
 
     return (
         <div className={`${maven_pro.className} pl-5 pr-5`}>

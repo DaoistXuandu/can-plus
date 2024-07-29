@@ -1,10 +1,10 @@
-import { footer_address, footer_hotline, footer_social } from "@/lib/content/dashboard";
-import { maven_pro } from "@/lib/font";
-import Instagram from "@/lib/icon/instagram";
-import Line from "@/lib/icon/line";
-import Twitter from "@/lib/icon/twitter";
-import Whatsaap from "@/lib/icon/whatsaap";
-import Youtube from "@/lib/icon/youtube";
+import { footer_address, footer_hotline, footer_social } from "@/app/lib/content/dashboard";
+import { maven_pro } from "@/app/lib/font";
+import Instagram from "@/app/lib/icon/instagram";
+import Line from "@/app/lib/icon/line";
+import Twitter from "@/app/lib/icon/twitter";
+import Whatsaap from "@/app/lib/icon/whatsaap";
+import Youtube from "@/app/lib/icon/youtube";
 
 export default function Footer() {
     return (

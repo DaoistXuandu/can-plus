@@ -1,5 +1,5 @@
-import { noto_sans } from "@/lib/font";
-import Menu from "@/lib/icon/menu";
+import { noto_sans } from "@/app/lib/font";
+import Menu from "@/app/lib/icon/menu";
 import { useState } from "react";
 
 export default function NavBar() {
