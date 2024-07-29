@@ -1,8 +1,8 @@
-import { location_body, location_header, location_icon_phone, location_icon_search } from "@/lib/content/dashboard";
-import { maven_pro } from "@/lib/font";
-import PhoneIcon from "@/lib/icon/phone";
-import SearchIcon from "@/lib/icon/search";
-import { canPlus_location, canPlus_near } from "@/lib/link";
+import { location_body, location_header, location_icon_phone, location_icon_search } from "@/app/lib/content/dashboard";
+import { maven_pro } from "@/app/lib/font";
+import PhoneIcon from "@/app/lib/icon/phone";
+import SearchIcon from "@/app/lib/icon/search";
+import { canPlus_location, canPlus_near } from "@/app/lib/link";
 
 export default function Location() {
     return (
