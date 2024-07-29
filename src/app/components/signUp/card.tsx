@@ -2,7 +2,7 @@ import { body, title } from "@/app/lib/content/signUp";
 import Input from "./input";
 import { useEffect, useState } from "react";
 import Choice from "./choice";
-import Button from "./button";
+import Button from "./button"
 import { useRouter } from "next/navigation";
 
 export default function Card() {

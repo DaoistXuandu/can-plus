@@ -12,7 +12,7 @@ const submit = {
             normal: "Belum memiliki akun?",
             bold: "Daftar!"
         },
-        url: "/pages/signup"
+        url: "/pages/signUp"
     }
 }
 
