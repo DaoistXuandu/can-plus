@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "CanPlus",
   description: "Website Digitalisasi Kantin Pertama di Indonesia",
   icons: {
-    icon: ["./asset/favicon_io/favicon.ico"]
+    icon: ["/asset/favicon_io/favicon.ico"]
   }
 };
 

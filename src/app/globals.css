@@ -26,6 +26,11 @@
   }
 }
 
+
+.login-background-image {
+  background-image: url('/image/login/background_1.png');
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(to bottom,
