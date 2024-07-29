@@ -1,4 +1,4 @@
-import { submit } from "@/app/lib/content/signup";
+import { submit } from "@/app/lib/content/signUp";
 
 export default function Button() {
     return (
