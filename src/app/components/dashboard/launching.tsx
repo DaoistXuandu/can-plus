@@ -1,5 +1,5 @@
-import { launching_header } from "@/lib/content/dashboard";
-import { noto_sans } from "@/lib/font";
+import { launching_header } from "@/app/lib/content/dashboard";
+import { noto_sans } from "@/app/lib/font";
 
 export default function Launching() {
     return (
