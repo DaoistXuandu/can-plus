@@ -9,8 +9,10 @@ import Review from "./components/dashboard/review";
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: "#ECF0F1", backgroundRepeat: "no-repeat" }} className="min-h-screen max-h-fit text-black">
-      <div className="lg:p-12 lg:pl-20 lg:pr-20">
+    <div style={{
+      backgroundColor: "#ECF0F1", backgroundRepeat: "no-repeat"
+    }} className="min-h-screen text-black background-image">
+      <div className="md:p-12 md:pl-20 md:pr-20">
         <NavBar />
         <div className="flex flex-col space-y-48">
           <Intro />

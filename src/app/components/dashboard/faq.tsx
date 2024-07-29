@@ -15,8 +15,8 @@ export default function FAQ() {
     }
 
     return (
-        <div className={`${maven_pro.className}`}>
-            <h1 style={{ color: "#DEC211" }} className="font-bold text-7xl">{faq_title}</h1>
+        <div className={`${maven_pro.className} pl-5 pr-5`}>
+            <h1 style={{ color: "#DEC211" }} className="font-bold text-5xl md:text-7xl">{faq_title}</h1>
             <div className="flex flex-col w-full mt-8 space-y-5">
                 {
                     faq_issue.map((issue, index) => (

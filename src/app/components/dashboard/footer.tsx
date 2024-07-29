@@ -8,12 +8,12 @@ import Youtube from "@/lib/icon/youtube";
 
 export default function Footer() {
     return (
-        <div style={{ backgroundColor: "#9A7D0A" }} className={`mt-40 w-full h-fit flex flex-col space-y-24 p-20 pt-16  ${maven_pro.className}`}>
-            <div className="w-3/12">
+        <div style={{ backgroundColor: "#9A7D0A" }} className={`mt-40 w-full h-fit flex flex-col space-y-20 p-10 md:p-20 pt-16  ${maven_pro.className}`}>
+            <div className="w-full md:w-6/12 lg:w-3/12">
                 <img src="./image/CanPlus_Main_Logo.png" alt="" />
             </div>
-            <div className="flex flex-row text-white">
-                <div className="w-7/12 flex flex-col space-y-10">
+            <div className="flex flex-col md:flex-row text-white space-y-10 md:space-y-0">
+                <div className="w-full md:w-7/12 flex flex-col space-y-10">
                     <div>
                         <h1 className="font-bold text-3xl">{footer_address.title}</h1>
                         <p className="text-lg font-normal pr-10">{footer_address.body}</p>
@@ -32,7 +32,7 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className="w-5/12">
+                <div className="w-full md:w-5/12">
                     <h1 className="font-bold text-3xl mb-2">
                         {footer_social.title}
                     </h1>

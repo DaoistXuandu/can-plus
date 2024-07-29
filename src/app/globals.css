@@ -16,14 +16,21 @@
   }
 }
 
+
+@media (max-width: 768px) {
+
+  /* or 301 if you want really the same as previously.  */
+  .background-image {
+    background-image: url('/image/background_phone.png');
+    height: fit-content;
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
