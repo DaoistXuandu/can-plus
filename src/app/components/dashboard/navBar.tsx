@@ -1,3 +1,4 @@
+import { navbar_auth, navbar_link } from "@/app/lib/content/dashboard";
 import { noto_sans } from "@/app/lib/font";
 import Menu from "@/app/lib/icon/menu";
 import { useState } from "react";
@@ -12,16 +13,16 @@ export default function NavBar() {
             </div>
             <div style={{ color: "#9A7D0A" }} className={`hidden md:flex ${noto_sans.className} w-4/5 flex flex-row justify-end space-x-8 items-center`}>
                 <ul className={`flex flex-row space-x-6 font-bold text-xl`}>
-                    <li className="hover:opacity-50 cursor-pointer">Lokasi</li>
-                    <li className="hover:opacity-50 cursor-pointer">Ulasan</li>
-                    <li className="hover:opacity-50 cursor-pointer">FAQ</li>
+                    <li className="hover:opacity-50 cursor-pointer">{navbar_link.location.comment}</li>
+                    <li className="hover:opacity-50 cursor-pointer">{navbar_link.review.comment}</li>
+                    <li className="hover:opacity-50 cursor-pointer">{navbar_link.faq.comment}</li>
                 </ul>
                 <div className="text-2xl font-bold">
                     |
                 </div>
                 <ul className="flex flex-row space-x-6">
-                    <li className="hover:underline hover:underline-offset-8 hover:opacity-80 cursor-pointer">Daftar</li>
-                    <li className="hover:underline hover:underline-offset-8 hover:opacity-80 cursor-pointer">Masuk</li>
+                    <li className="hover:underline hover:underline-offset-8 hover:opacity-80 cursor-pointer"><a href={navbar_auth.login.url}>{navbar_auth.login.comment}</a></li>
+                    <li className="hover:underline hover:underline-offset-8 hover:opacity-80 cursor-pointer"><a href={navbar_auth.signup.url}>{navbar_auth.signup.comment}</a></li>
                 </ul>
             </div>
             <div className="fixed md:hidden w-fit flex flex-col">

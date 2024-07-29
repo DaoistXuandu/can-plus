@@ -15,7 +15,7 @@ export default function Card() {
     }
 
     return (
-        <form style={{ backgroundColor: "#7D6608" }} className={`h-fit w-fit md:w-full md:h-full bg-rose-200 rounded-2xl shadow-2xl p-10 pt-16 flex flex-col`} action={handleLogin}>
+        <form style={{ backgroundColor: "#7D6608" }} className={`h-fit w-fit md:w-full bg-rose-200 rounded-2xl shadow-2xl p-10 pt-12 flex flex-col`} action={handleLogin}>
             <h1 className="w-full flex justify-center text-6xl font-bold">{title}</h1>
             <div className="mt-12 flex flex-col space-y-6">
                 <Input name={body.username} setValue={setUsername} type="text" />

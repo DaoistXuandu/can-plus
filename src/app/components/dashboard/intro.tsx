@@ -3,7 +3,7 @@ import { maven_pro } from "@/app/lib/font";
 
 export default function Intro() {
     return (
-        <div className={`w-full h-fit flex flex-row mt-24 md:mt-16 ${maven_pro.className}`}>
+        <div className={`w-full h-fit flex flex-row mt-24 md:mt-16 lg:mt-20 ${maven_pro.className}`}>
             <div className="hidden lg:flex lg:w-6/12 lg:pl-8 justify-center">
                 <img src="./image/dashboard_1.png" className="rounded-xl" alt="" />
             </div>

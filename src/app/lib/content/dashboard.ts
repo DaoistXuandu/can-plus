@@ -1,4 +1,33 @@
+import { sign } from "crypto"
+import { url } from "inspector"
 import { title } from "process"
+// navbar
+const navbar_auth = {
+    login: {
+        comment: "Masuk",
+        url: "/pages/login"
+    },
+    signup: {
+        comment: "Daftar",
+        url: "/pages/signup"
+    }
+}
+
+const navbar_link = {
+    location: {
+        comment: "Lokasi",
+        url: ""
+    },
+    review: {
+        comment: "Ulasan",
+        url: ""
+    },
+    faq: {
+        comment: "FAQ",
+        url: ""
+    },
+}
+
 
 // intro
 const intro_header = "CanPlus"
@@ -73,6 +102,8 @@ const footer_social = {
 }
 
 export {
+    navbar_auth,
+    navbar_link,
     footer_address,
     footer_hotline,
     footer_social,
