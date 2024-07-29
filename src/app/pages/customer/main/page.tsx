@@ -2,8 +2,7 @@
 
 export default function Main() {
     return (
-        <div>
-            Main
+        <div style={{ backgroundColor: "#ECF0F1" }} className="min-h-screen">
         </div>
     )
 
