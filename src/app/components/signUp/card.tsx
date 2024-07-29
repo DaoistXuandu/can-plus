@@ -1,8 +1,9 @@
-import { body, title } from "@/app/lib/content/signUp";
+import { body, title } from "@/app/lib/content/signup";
 import Input from "./input";
 import { useEffect, useState } from "react";
 import Choice from "./choice";
 import Button from "./button";
+import { useRouter } from "next/navigation";
 
 export default function Card() {
     const [username, setUsername] = useState("")
@@ -10,7 +11,10 @@ export default function Card() {
     const [confirm, setConfirm] = useState("")
     const [choice, setChoice] = useState(1)
 
+    const router = useRouter()
+
     function handleLogin() {
+        router.push("/pages/customer/main")
         console.log(username, password, confirm, choice)
     }
 

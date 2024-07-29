@@ -4,7 +4,7 @@ export function middleware(request: NextRequest) {
     // Example: Log the request URL
     // You can check the pathname or other properties of the request
     // if (request.nextUrl.pathname === '/') {
-    //     return NextResponse.redirect(new URL('/pages/signup', request.url)); // Redirects /about to /
+    //     return NextResponse.redirect(new URL('/pages/login', request.url)); // Redirects /about to /
     // }
 
     // You can return a response, or let the request continue
