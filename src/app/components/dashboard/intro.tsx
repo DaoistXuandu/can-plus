@@ -1,5 +1,5 @@
-import { intro_body, intro_button, intro_header } from "@/lib/content/dashboard";
-import { maven_pro } from "@/lib/font";
+import { intro_body, intro_button, intro_header } from "@/app/lib/content/dashboard";
+import { maven_pro } from "@/app/lib/font";
 
 export default function Intro() {
     return (
