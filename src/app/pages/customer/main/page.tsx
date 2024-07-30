@@ -1,5 +1,6 @@
 "use client"
 
+import Content from "@/app/components/customer/main/content/content"
 import NavBar from "@/app/components/customer/main/navbar/navbar"
 import { maven_pro } from "@/app/lib/font"
 

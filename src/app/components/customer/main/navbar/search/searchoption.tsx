@@ -3,7 +3,7 @@ import SearchIcon from "@/app/lib/icon/search";
 
 export default function SearchOption() {
     return (
-        <div className="w-full max-h-40 md:max-h-56 overflow-scroll flex flex-col mt-8 text-black">
+        <div className="relative z-50 w-full max-h-40 md:max-h-56 overflow-scroll flex flex-col mt-8 text-black">
             <div className="flex flex-row space-x-5 w-full hover:bg-gray-300 p-3 lg:p-5 cursor-pointer">
                 <img src={stall[0].image} width={50} height={50} className="rounded-lg" alt="" />
                 <div className="flex flex-col">

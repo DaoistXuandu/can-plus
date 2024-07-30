@@ -17,4 +17,14 @@ const suggestion = [
     "Kambing Guling"
 ]
 
-export { navbar_logo_link, navbar_search_comment, navbar_option, suggestion }
+// main comment
+const main_comment = {
+    default: "Di sekitar muuuuu!!!",
+    university: "Kantin di sekitar Universitas Indonesia",
+    canteen: "Tempat Makan di Kantin Balgebun",
+    name: "Mencari Depot Aji Terenaaaak!!!!",
+    food: "Tempat Makan Dengan Menu Mie Ayam"
+}
+
+
+export { navbar_logo_link, navbar_search_comment, navbar_option, suggestion, main_comment }
