@@ -1,5 +1,3 @@
-import { styleText } from "util"
-
 export default function SearchIcon({ width, height, stroke = 1.5 }: { width: number, height: number, stroke: number }) {
     return (
         <svg style={{ width: width + "px", height: height + "px" }} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={stroke} stroke="currentColor" className={`size-6`}>

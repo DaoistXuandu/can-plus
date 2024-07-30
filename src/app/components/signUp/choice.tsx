@@ -4,7 +4,7 @@ export default function Choice(
     { name, setStatus, choice, index }: { name: string, index: number, choice: number, setStatus: (status: number) => void }) {
 
     const handleChange = (value: string) => {
-        console.log(value)
+        // console.log(value)
     };
     return (
         <div style={{ backgroundColor: "#9A7D0A", }}

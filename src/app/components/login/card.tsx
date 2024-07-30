@@ -12,7 +12,7 @@ export default function Card() {
 
     function handleLogin() {
         router.push("/pages/customer/main")
-        console.log(username, password)
+        // console.log(username, password)
     }
 
     return (

@@ -1,4 +1,4 @@
-import { intro_body, intro_button, intro_header } from "@/app/lib/content/dashboard";
+import { intro_body, intro_button, intro_button_url, intro_header } from "@/app/lib/content/dashboard";
 import { maven_pro } from "@/app/lib/font";
 
 export default function Intro() {
@@ -11,7 +11,9 @@ export default function Intro() {
                 <h1 style={{ color: "#E0C412" }} className="font-bold text-6xl lg:text-5xl">{intro_header}</h1>
                 <p className="font-thin text-white md:text-black pl-5 pr-5 lg:pl-24 lg:pr-24 text-xl lg:text-2xl">{intro_body}</p>
                 <div className="w-full flex justify-center">
-                    <div style={{ backgroundColor: "#F1C40F" }} className="hover:scale-105 shadow-lg cursor-pointer pt-3 pb-3 pl-10 mt-10 md:mt-3 pr-10 rounded-3xl w-fit flex text-center font-bold text-white text-xl">{intro_button}</div>
+                    <a href={intro_button_url} style={{ backgroundColor: "#F1C40F" }} className="hover:scale-105 shadow-lg cursor-pointer pt-3 pb-3 pl-10 mt-10 md:mt-3 pr-10 rounded-3xl w-fit flex text-center font-bold text-white text-xl">
+                        {intro_button}
+                    </a>
                 </div>
             </div >
         </div >

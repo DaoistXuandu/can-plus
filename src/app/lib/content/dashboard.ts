@@ -33,6 +33,7 @@ const navbar_link = {
 const intro_header = "CanPlus"
 const intro_body = "Canplus merupakan aplikasi digitalisasi kantin yang memudahkan transaksi tanpa uang tunai di lingkungan sekolah dan kampus. Aplikasi ini memungkinkan siswa dan mahasiswa melakukan pemesanan dan pembayaran makanan secara online, sehingga mempercepat proses antrian dan efisiensi kantin."
 const intro_button = "Ikuti Lebih Lanjut!"
+const intro_button_url = "/pages/customer/main"
 
 // launching
 const launching_header = "Peluncuran Pertama CanPlus"
@@ -117,6 +118,7 @@ export {
     intro_header,
     intro_body,
     intro_button,
+    intro_button_url,
     launching_header,
     location_header,
     location_body,

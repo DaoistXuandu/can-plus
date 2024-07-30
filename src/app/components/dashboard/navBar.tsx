@@ -35,8 +35,8 @@ export default function NavBar() {
                     </div>
                 </div>
                 <div style={{ backgroundColor: "#9A7D0A", marginTop: `-1px`, marginLeft: `${enableMenu ? '0%' : '-100%'}` }} className="transition-all duration-700 w-full border-0 flex flex-col space-y-7 p-5 pb-8 justify-center items-center">
-                    <div className="font-bold text-white rounded-full text-xl border border-1 pl-28 pr-28 p-3 hover:bg-white hover:text-yellow-700">Masuk</div>
-                    <div className="font-bold text-white rounded-full text-xl border border-1 bg-white text-yellow-700 pl-28 pr-28 p-3 hover:bg-transparent hover:text-white">Daftar</div>
+                    <a href="/pages/login" className="font-bold text-white rounded-full text-xl border border-1 pl-28 pr-28 p-3 hover:bg-white hover:text-yellow-700">Masuk</a>
+                    <a href="/pages/signUp" className="font-bold text-white rounded-full text-xl border border-1 bg-white text-yellow-700 pl-28 pr-28 p-3 hover:bg-transparent hover:text-white">Daftar</a>
                 </div>
 
             </div>
