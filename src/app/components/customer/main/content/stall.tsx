@@ -36,11 +36,12 @@ export default function Stall(
             </div>
             <div className="text-black h-3/6 p-5 flex flex-col gap-2">
                 <div>
-                    <h1 className="font-bold text-lg">{name}</h1>
+                    <img src={image_profile} className="md:hidden w-20 h-20 rounded-full" alt="" />
+                    <h1 className="font-bold text-lg mt-2 md:mt-0">{name}</h1>
                     <p className="font-medium text-xs -mt-1">{location}</p>
                 </div>
-                <div className="relative overflow-hidden line-clamp-2">
-                    <p className="text-xs">{description}</p>
+                <div className="relative w-full h-full">
+                    <p style={{ textOverflow: "ellipsis" }} className="text-xs overflow-hidden line-clamp-4 md:line-clamp-2">{description}</p>
                     <a className="cursor-pointer absolute text-xs bg-white font-bold text-yellow-400 bottom-0 right-0">..Selanjutnya</a>
                 </div>
             </div>
