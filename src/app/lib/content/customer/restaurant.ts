@@ -16,7 +16,7 @@ const stall = [
         name: "Depot Mas Aji",
         location: "Kantin Bawah Fakultas Psikologi, UI",
         rating: "4.2",
-        description: "Menyediakan Ayam Panggang, Ayam Goreng dan semua ayam.Serta minuman penyegar hari baik yang bersusu, soda, hingga campuran minuman yang belum pernah kamu coba dsdjknsjdsn",
+        description: "Menyediakan Ayam Panggang, Ayam Goreng dan semua ayam. Serta minuman penyegar hari baik yang bersusu, soda, hingga campuran minuman yang belum pernah kamu coba dsdjknsjdsn",
         time: {
             open: "10.00",
             close: "Selesai"
@@ -63,7 +63,7 @@ const stall = [
         name: "Warkop Bang Asep",
         location: "Kantin Balgebun Fakultas Ilmu Komputer, Universitas Indonesia",
         rating: "2.7",
-        description: "Menyediakan Ayam Panggang, Ayam Goreng dan semua ayam.Serta minuman penyegar hari baik yang bersusu, soda, hingga campuran minuman yang belum pernah kamu coba dsdjknsjdsn",
+        description: "Menyediakan Ayam Panggang, Ayam Goreng dan semua ayam. Serta minuman penyegar hari baik yang bersusu, soda, hingga campuran minuman yang belum pernah kamu coba dsdjknsjdsn",
         time: {
             open: "08.00",
             close: "15.00"

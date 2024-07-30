@@ -8,6 +8,7 @@ export default function Main() {
     return (
         <div style={{ backgroundColor: "#ECF0F1" }} className={`min-h-screen ${maven_pro.className}`}>
             <NavBar />
+            <Content />
         </div>
     )
 

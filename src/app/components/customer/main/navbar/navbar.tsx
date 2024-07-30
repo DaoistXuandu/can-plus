@@ -19,7 +19,7 @@ export default function NavBar() {
     }, [statusMenu])
 
     return (
-        <div style={{ backgroundColor: "#ECF0F1" }} className="md:fixed">
+        <div style={{ backgroundColor: "#ECF0F1" }} className="fixed z-20 w-full">
             <div className={`fixed z-20`}>
                 <div className="flex bg-white  md:bg-transparent shadow-md md:shadow-none p-5 lg:p-10 md:p-10 md:pl-16 md:pr-16 flex-col md:flex-row w-full flex items-center justify-center ">
                     <div className="md:relative w-full md:w-4/12 lg:w-3/12 flex items-center">
@@ -47,7 +47,7 @@ export default function NavBar() {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="relative w-full">
                 <div className="h-28"></div>
                 <div className={`relative md:hidden ${zStatus ? 'z-30' : ''} flex p-5 md:hidden`}>
                     <SearchBar />
@@ -55,10 +55,11 @@ export default function NavBar() {
                 <div className={`hidden md:flex relative ${zStatus ? 'z-30 md:z-0' : ''} `}>
                     <Suggestion />
                 </div>
-                <div className="pl-5 pr-5 md:pl-12 md:pr-12 p-2 text-black font-medium text-2xl">
+                <div className="pl-5 pr-5 text-center md:text-left md:pl-12 md:pr-12 p-2 text-black font-medium text-3xl">
                     <h1>{main_comment.default}</h1>
                 </div>
             </div>
+
 
         </div >
     )
