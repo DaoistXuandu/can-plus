@@ -18,6 +18,9 @@ export default function Content() {
                 <Area url={canteen[0].url} address={canteen[0].address} name={canteen[0].name} />
                 <Area url={canteen[0].url} address={canteen[0].address} name={canteen[0].name} />
                 <Area url={canteen[0].url} address={canteen[0].address} name={canteen[0].name} />
+                <Stall name={stall[0].name} location={stall[0].location} description={stall[0].description} rating={stall[0].rating} image_background={stall[0].image} image_profile={stall[0].menu[0].list[0].image} />
+                <Stall name={stall[0].name} location={stall[0].location} description={stall[0].description} rating={stall[0].rating} image_background={stall[0].image} image_profile={stall[0].menu[0].list[0].image} />
+                <Stall name={stall[0].name} location={stall[0].location} description={stall[0].description} rating={stall[0].rating} image_background={stall[0].image} image_profile={stall[0].menu[0].list[0].image} />
             </div>
         </div>
     )
