@@ -40,7 +40,6 @@ export default function NavBar() {
                     </div>
                 </div>
                 <div style={{ marginLeft: (statusMenu ? "0%" : "-100%") }}
-                    onClick={e => console.log(1)}
                     className="transition-all duration-700 w-10/12 border boder-2 border-gray-200 border-r-0 border-l-0 border-b-0 bg-white text-black shadow-md md:hidden">
                     <div>
                         <Option />
