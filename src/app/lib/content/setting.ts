@@ -31,6 +31,7 @@ const data = {
 }
 
 const button_comment = "Ubah Password"
+const logout_comment = "Log Out"
 const logo_url = "/image/CanPlus_Main_Logo.png"
 
-export { data, button_comment, logo_url }
+export { data, button_comment, logout_comment, logo_url }

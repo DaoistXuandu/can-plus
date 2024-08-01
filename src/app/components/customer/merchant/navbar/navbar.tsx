@@ -28,7 +28,7 @@ export default function NavBar() {
     return (
         <div style={{ backgroundColor: "#ECF0F1" }} className="fixed z-20 w-full">
             <div className={`fixed z-20 w-full`}>
-                <div className="flex bg-white  md:bg-transparent shadow-md md:shadow-none p-5 lg:p-10 md:p-10 md:pl-16 md:pr-16 flex-col md:flex-row w-full flex items-center justify-center ">
+                <div className="flex bg-white  md:bg-transparent shadow-md md:shadow-none p-5 lg:p-10 lg:pl-16 lg:pr-16 md:p-10 md:pl-10 md:pr-10 flex-col md:flex-row w-full flex items-center justify-center ">
                     <div className="md:relative w-full md:w-4/12 lg:w-3/12 flex items-center">
                         <div className={`w-3/12 md:hidden text-yellow-300 transition ease-in-out duration-700 ${statusMenu ? 'rotate-90' : ''}`} onClick={e => setStatusMenu(statusMenu != true)}>
                             <Menu size={50} stroke={2} />
@@ -61,7 +61,7 @@ export default function NavBar() {
                 <div className="w-full flex pt-5 md:pt-12 flex-row items-center ">
                     <div className="
                             w-full md:w-10/12 
-                            pl-3 pr-3 md:pr-0 md:pl-10 
+                            pl-3 pr-3 md:pr-0 md:pl-10 lg:pl-16
                             text-black 
                             flex flex-row space-x-5 items-center
                         ">
@@ -69,7 +69,7 @@ export default function NavBar() {
                             <Location size={60} stroke={1} />
                         </div>
                         <div className="flex flex-col">
-                            <div className="flex flex-row space-x-4">
+                            <div className="flex flex-row">
                                 <div className="flex flex-row text-sm space-x-2 items-center">
                                     <p><Clock size={20} /></p>
                                     <p>{stall[0].time.open}</p>
@@ -93,7 +93,7 @@ export default function NavBar() {
                             </div>
                         </div>
                     </div>
-                    <div className="hidden md:flex md:w-2/12 pr-3 pl-3 md:pl-0 md:pr-10 flex flex-row items-center text-yellow-400 space-x-5">
+                    <div className="hidden md:flex md:w-2/12 pr-3 pl-3 md:pl-0 md:pr-10 lg:pr-16 flex flex-row justify-end items-center text-yellow-400 space-x-5">
                         <div className="hidden lg:flex">
                             <Star size={75} stroke={2} />
                         </div>
@@ -108,7 +108,7 @@ export default function NavBar() {
                         </div>
                     </div>
                 </div>
-                <div className="pl-3 pr-3 md:pl-10 md:pr-10 mt-5 select-none">
+                <div className="pl-3 pr-3 md:pl-10 md:pr-10 lg:pr-16 lg:pl-16 mt-5 select-none">
                     <div className="relative z-20 md:w-1/2 lg:w-1/3 h-fit cursor-pointer">
                         <div
                             onClick={e => setMenuOption(menuOption != true)}

@@ -8,8 +8,8 @@ import { maven_pro } from "@/app/lib/font"
 export default function Main() {
     return (
         <div style={{ backgroundColor: "#ECF0F1" }} className={`min-h-screen ${maven_pro.className}`}>
-            <NavBar type={0} />
-            <Content content={main_content[0]} />
+            <NavBar type={1} />
+            <Content content={main_content[1]} />
         </div>
     )
 
