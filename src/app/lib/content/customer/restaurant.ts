@@ -56,6 +56,40 @@ const stall = [
                         availibility: true
                     },
                 ]
+            },
+            {
+                section: "Snack",
+                list: [
+                    {
+                        name: "Mie Ayam sm , sm dmsan,mewnlkfn.jewn.,fhklehwlfh34klejwhfliehwk;fhkjewnafljkchlkewaf,jheakjfej.wfbk.eflhkewbkjfvhfwe.kjewffekgjfekbjfew.kbjwe.jkewkj.",
+                        price: "10.000",
+                        image: "/image/user/background_food.jpg",
+                        availibility: false
+                    },
+                    {
+                        name: "Pop Ice",
+                        price: "7.000",
+                        image: "/image/user/background_food.jpg",
+                        availibility: true
+                    },
+                ]
+            },
+            {
+                section: "Snack",
+                list: [
+                    {
+                        name: "Mie Ayam sm , sm dmsan,mewnlkfn.jewn.,fhklehwlfh34klejwhfliehwk;fhkjewnafljkchlkewaf,jheakjfej.wfbk.eflhkewbkjfvhfwe.kjewffekgjfekbjfew.kbjwe.jkewkj.",
+                        price: "10.000",
+                        image: "/image/user/background_food.jpg",
+                        availibility: false
+                    },
+                    {
+                        name: "Pop Ice",
+                        price: "7.000",
+                        image: "/image/user/background_food.jpg",
+                        availibility: true
+                    },
+                ]
             }
         ]
     },

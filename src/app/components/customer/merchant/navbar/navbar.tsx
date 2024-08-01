@@ -26,7 +26,7 @@ export default function NavBar() {
     }, [statusMenu])
 
     return (
-        <div style={{ backgroundColor: "#ECF0F1" }} className="fixed z-20 w-full">
+        <div style={{ backgroundColor: "#ECF0F1" }} className="fixed z-20 w-full pb-3">
             <div className={`fixed z-20 w-full`}>
                 <div className="flex bg-white  md:bg-transparent shadow-md md:shadow-none p-5 lg:p-10 lg:pl-16 lg:pr-16 md:p-10 md:pl-10 md:pr-10 flex-col md:flex-row w-full flex items-center justify-center ">
                     <div className="md:relative w-full md:w-4/12 lg:w-3/12 flex items-center">
@@ -61,9 +61,9 @@ export default function NavBar() {
                 <div className="w-full flex pt-5 md:pt-12 flex-row items-center ">
                     <div className="
                             w-full md:w-10/12 
-                            pl-3 pr-3 md:pr-0 md:pl-10 lg:pl-16
+                            pl-5 pr-5 md:pr-0 md:pl-10 lg:pl-16
                             text-black 
-                            flex flex-row space-x-5 items-center
+                            flex flex-row md:space-x-5 items-center
                         ">
                         <div className="hidden md:flex">
                             <Location size={60} stroke={1} />

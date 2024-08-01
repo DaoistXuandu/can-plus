@@ -3,9 +3,8 @@ import SearchBar from "./search/searchbar";
 import Option from "./option";
 import Menu from "@/app/lib/icon/menu";
 import { useEffect, useState } from "react";
-import Suggestion from "./suggestion";
 
-export default function NavBar({ type }: { type: number }) {
+export default function NavBar() {
     const [statusMenu, setStatusMenu] = useState(false)
     const [zStatus, setZStatus] = useState(true)
 
@@ -51,11 +50,8 @@ export default function NavBar({ type }: { type: number }) {
                 <div className={`relative md:hidden ${zStatus ? 'z-30' : ''} flex p-5 md:hidden`}>
                     <SearchBar />
                 </div>
-                <div className={`hidden md:flex relative ${zStatus ? 'z-30 md:z-0' : ''} `}>
-                    <Suggestion />
-                </div>
-                <div className="pl-5 pr-5 text-center md:text-left md:pl-12 md:pr-12 lg:pl-16 lg:pr-16 p-2 text-black font-medium text-3xl">
-                    <h1>{main_comment[type]}</h1>
+                <div>
+                    <h1>{ }</h1>
                 </div>
             </div>
         </div >

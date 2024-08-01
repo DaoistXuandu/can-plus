@@ -1,7 +1,11 @@
+import { comment } from "postcss"
 import { button_comment } from "../setting"
 
 const main = {
-    title: "Pembayaran",
+    title: "Keranjang",
+    section: "Pesanan",
+    note: "Catatan",
+    note_edit: "Selesai",
     button_comment: "Bayar!"
 }
 
@@ -15,12 +19,24 @@ const delivery = {
 
 const bill = {
     title: "Bayar",
-    price: "25.0000",
+    price: "25.000",
     detail: {
-        food: "23.000",
-        delivery: "2.000"
+        food: {
+            comment: "Total Makanan",
+            price: "23.000"
+        },
+        delivery: {
+            comment: "Biaya Ongkir",
+            price: "5.000"
+        },
+        apps: {
+            comment: "Biaya Aplikasi",
+            price: "2.000"
+        },
     },
+    url: "/image/GoPay.png",
     button_comment: "GoPay"
+
 }
 
 export { main, delivery, bill }

@@ -12,7 +12,7 @@ export default function Menu({
 ) {
     const [value, setValue] = useState(0);
     return (
-        <div className="flex flex-row items-center w-full h-full">
+        <div className="flex flex-row items-center w-full h-full space-x-5">
             <div className="w-10/12 md:w-11/12 flex flex-row h-fit space-x-5 select-none overflow-scroll">
                 <img src={image} className="rounded-xl h-16 w-16 min-h-16 min-w-16 md:min-h-16 md:min-w-16 md:h-16 md:w-16" alt="" />
                 <div className="flex flex-col justify-center w-full">
