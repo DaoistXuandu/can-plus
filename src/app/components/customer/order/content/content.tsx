@@ -1,30 +1,23 @@
-import { canteen } from "@/app/lib/content/customer/canteen";
-import Area from "./area";
-import Stall from "./stall";
 import { stall } from "@/app/lib/content/customer/restaurant";
+import Order from "./order";
+import { useState } from "react";
+import { order } from "@/app/lib/content/customer/order";
 
-export default function Content({ content }: {
-    content: {
-        type: number,
-        url: string,
-        address: string,
-        name: string
-    }[]
-}) {
+export default function Content() {
+    const menu = stall[0].menu[0].list[0]
+    const [choice, setchoice] = useState(0)
     return (
-        <div className="flex flex-col pb-24 pl-10 pr-10 lg:pl-16 lg:pr-16">
-            <div className="h-80 md:h-72"></div>
-            <div className="relative z-0 overflow-hidden flex flex-col md:flex-row md:flex-wrap gap-12">
-                {
-                    content.map(item => (
-                        (item.type == 0 ?
-                            <Area url={canteen[0].url} address={canteen[0].address} name={canteen[0].name} />
-                            :
-                            <Stall name={stall[0].name} location={stall[0].location} description={stall[0].description} rating={stall[0].rating} image_background={stall[0].image} image_profile={stall[0].menu[0].list[0].image} />
-                        )
-                    ))
-                }
+        <div>
+            <div className="h-60 md:h-52"></div>
+            <div>
+                <div className="text-black pl-5 pr-5 mt-16 md:mt-10 md:pl-10 md:pr-10 lg:pl-16 lg:pr-16 flex flex-col space-y-4 pb-16">
+                    {order.map((item, index) => (
+                        <div className={`border border-${index != order.length - 1 ? 1 : 0} border-t-0 border-r-0 border-l-0 border-gray-300 pb-4`}>
+                            <Order orderIndex={index} />
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div >
+        </div>
     )
 }
