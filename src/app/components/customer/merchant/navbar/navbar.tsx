@@ -9,12 +9,15 @@ import { data } from "@/app/lib/content/setting";
 import { stall } from "@/app/lib/content/customer/restaurant";
 import Star from "@/app/lib/icon/star";
 import DropDown from "@/app/lib/icon/dropdown";
+import { useRouter } from "next/navigation";
 
 export default function NavBar() {
     const [statusMenu, setStatusMenu] = useState(false)
     const [zStatus, setZStatus] = useState(true)
     const [menu, setMenu] = useState(0)
     const [menuOption, setMenuOption] = useState(false)
+
+    const router = useRouter()
 
     useEffect(() => {
         if (statusMenu == true)
@@ -58,7 +61,7 @@ export default function NavBar() {
                 <div className={`relative md:hidden ${zStatus ? 'z-30' : ''} flex p-5 md:hidden`}>
                     <SearchBar />
                 </div>
-                <div className="w-full flex pt-5 md:pt-12 flex-row items-center ">
+                <div className={`w-full flex pt-5 md:pt-12 flex-row items-center `}>
                     <div className="
                             w-full md:w-10/12 
                             pl-5 pr-5 md:pr-0 md:pl-10 lg:pl-16
@@ -69,7 +72,7 @@ export default function NavBar() {
                             <Location size={60} stroke={1} />
                         </div>
                         <div className="flex flex-col">
-                            <div className="flex flex-row">
+                            <div className="flex flex-row space-x-4 md:space-x-0">
                                 <div className="flex flex-row text-sm space-x-2 items-center">
                                     <p><Clock size={20} /></p>
                                     <p>{stall[0].time.open}</p>
@@ -77,7 +80,9 @@ export default function NavBar() {
                                     <p>{stall[0].time.close}</p>
                                     <p>WIB</p>
                                 </div>
-                                <div className="md:hidden flex flex-row items-center space-x-2 text-yellow-500">
+                                <div
+                                    onClick={e => router.push("/pages/customer/merchant/rating")}
+                                    className="hover:scale-110 md:hidden flex flex-row items-center space-x-1 text-yellow-500">
                                     <div className="lg:hidden">
                                         <Star size={20} stroke={2} />
                                     </div>
@@ -93,7 +98,9 @@ export default function NavBar() {
                             </div>
                         </div>
                     </div>
-                    <div className="hidden md:flex md:w-2/12 pr-3 pl-3 md:pl-0 md:pr-10 lg:pr-16 flex flex-row justify-end items-center text-yellow-400 space-x-5">
+                    <div
+                        onClick={e => router.push("/pages/customer/merchant/rating")}
+                        className="cursor-pointer hidden md:flex md:w-2/12 pr-3 pl-3 md:pl-0 md:pr-10 lg:pr-16 flex flex-row justify-end items-center text-yellow-400 space-x-5">
                         <div className="hidden lg:flex">
                             <Star size={75} stroke={2} />
                         </div>
