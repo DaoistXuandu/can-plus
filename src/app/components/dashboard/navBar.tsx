@@ -7,11 +7,11 @@ export default function NavBar() {
     const [enableMenu, setEnableMenu] = useState(false)
 
     return (
-        <div className="w-full flex flex-col md:flex-row h-fit">
+        <div className={`w-full flex flex-col md:flex-row h-fit ${noto_sans.className}`}>
             <div className="w-1/5 hidden md:flex">
                 <img src="./image/CanPlus_Main_Logo.png" alt="" />
             </div>
-            <div style={{ color: "#9A7D0A" }} className={`hidden md:flex ${noto_sans.className} w-4/5 flex flex-row justify-end space-x-8 items-center`}>
+            <div style={{ color: "#9A7D0A" }} className={`hidden md:flex w-4/5 flex flex-row justify-end space-x-8 items-center`}>
                 <ul className={`flex flex-row space-x-6 font-bold text-xl`}>
                     <li className="hover:opacity-50 cursor-pointer">{navbar_link.location.comment}</li>
                     <li className="hover:opacity-50 cursor-pointer">{navbar_link.review.comment}</li>
