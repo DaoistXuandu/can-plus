@@ -1,4 +1,5 @@
 import { navbar_option } from "@/app/lib/content/customer/main";
+import { logOut } from "@/app/lib/controller/user";
 import Cart from "@/app/lib/icon/cart";
 import Delivery from "@/app/lib/icon/delivery";
 import LogOut from "@/app/lib/icon/logout";
@@ -17,6 +18,12 @@ export default function Option() {
     }, [small])
 
     const router = useRouter()
+
+    async function handleLogOut() {
+        const logout = await logOut()
+        router.push("/")
+    }
+
     return (
         <div className="w-full flex flex-col md:flex-row md:space-x-4 justify-end">
             <div className={`p-4 md:p-0 flex ${small ? "hover:bg-gray-200" : ""} flex-row md:flex-col items-center space-x-5`}
@@ -43,7 +50,7 @@ export default function Option() {
                 </div>
                 <div
                     style={{ marginRight: (setting ? "0%" : "-1000%") }}
-                    className="transition-all duration-600 hidden md:flex absolute top-full right-0 pt-5">
+                    className="transition-all duration-600 hidden md:flex absolute z-50 top-full right-0 pt-5">
                     <div className="flex flex-col bg-yellow-400 rounded-2xl select-none">
                         <div
                             className="flex flex-row hover:bg-yellow-300 rounded-t-2xl items-center space-x-2 p-3 cursor-pointer"
@@ -55,7 +62,7 @@ export default function Option() {
                         </div>
                         <div
                             className="flex flex-row hover:bg-yellow-300 rounded-b-2xl items-center p-3 space-x-2 cursor-pointer border boder-1 border-gray-100 border-l-0 border-r-0 border-b-0"
-                            onClick={e => router.push("/")}>
+                            onClick={handleLogOut}>
                             <LogOut size={30} stroke={2} />
                             <p className="font-medium">Keluar</p>
                         </div>

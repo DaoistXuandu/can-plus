@@ -9,11 +9,16 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    occupation: {
+        type: Number,
+        required: true
+    },
+    name: String,
     telephone: String,
     email: String,
     profile: {
         data: Buffer,
-        type: String
+        content: String
     }
 }, { timestamps: false, versionKey: false });
 

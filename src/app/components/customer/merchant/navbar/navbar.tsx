@@ -30,7 +30,7 @@ export default function NavBar() {
 
     return (
         <div style={{ backgroundColor: "#ECF0F1" }} className="fixed z-20 w-full pb-3">
-            <div className={`fixed z-30 w-full`}>
+            <div className={`fixed z-30 md:z-40 w-full`}>
                 <div className="flex bg-white  md:bg-transparent shadow-md md:shadow-none p-5 lg:p-10 lg:pl-16 lg:pr-16 md:p-10 md:pl-10 md:pr-10 flex-col md:flex-row w-full flex items-center justify-center ">
                     <div className="md:relative w-full md:w-4/12 lg:w-3/12 flex items-center">
                         <div className={`w-3/12 md:hidden text-yellow-300 transition ease-in-out duration-700 ${statusMenu ? 'rotate-90' : ''}`} onClick={e => setStatusMenu(statusMenu != true)}>
@@ -50,7 +50,7 @@ export default function NavBar() {
                     </div>
                 </div>
                 <div style={{ marginLeft: (statusMenu ? "0%" : "-100%") }}
-                    className="transition-all duration-700 w-10/12 border boder-2 border-gray-200 border-r-0 border-l-0 border-b-0 bg-white text-black shadow-md md:hidden">
+                    className="transition-all relative z-50 duration-700 w-10/12 border boder-2 border-gray-200 border-r-0 border-l-0 border-b-0 bg-white text-black shadow-md md:hidden">
                     <div>
                         <Option />
                     </div>

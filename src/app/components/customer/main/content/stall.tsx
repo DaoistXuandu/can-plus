@@ -21,7 +21,7 @@ export default function Stall(
 
     const router = useRouter()
     return (
-        <div className="w-full md:w-3/12 h-60 bg-white flex flex-col rounded-2xl cursor-pointer" onClick={e => (router.push("/pages/customer/merchant"))} >
+        <div className="hover:shadow-xl hover:scale-95 w-full md:w-3/12 h-60 bg-white flex flex-col rounded-2xl cursor-pointer" onClick={e => (router.push("/pages/customer/merchant"))} >
             <div style={{ backgroundImage: `url(${image_background})` }}
                 className="hidden md:flex relative z-0 w-full h-2/6 rounded-t-2xl">
                 <img src={image_profile} className="absolute top-1/2 md:right-1/2 lg:right-2/3 h-20 w-20 rounded-full" alt="" />
