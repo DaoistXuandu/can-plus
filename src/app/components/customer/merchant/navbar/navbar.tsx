@@ -58,7 +58,7 @@ export default function NavBar() {
             </div>
             <div className="relative w-full">
                 <div className="h-28"></div>
-                <div className={`relative ${zStatus ? 'z-30' : ''} flex p-5 md:hidden`}>
+                <div className={`relative ${zStatus ? 'z-40' : ''} flex p-5 md:hidden`}>
                     <SearchBar />
                 </div>
                 <div className={`relative ${zStatus ? 'z-30' : ''} w-full flex pt-5 md:pt-12 flex-row items-center `}>

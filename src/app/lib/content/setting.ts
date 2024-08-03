@@ -1,4 +1,8 @@
 const data = {
+    image: {
+        name: "Foto Profil",
+        input: "Edit Foto"
+    },
     required: [
         {
             name: "Nama Lengkap",
