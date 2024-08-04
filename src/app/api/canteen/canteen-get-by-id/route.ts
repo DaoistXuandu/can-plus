@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function PATCH(request: NextRequest) {
     try {
         const { id } = await request.json()
-        const canteen = await Canteen.findById({ id })
+        const canteen = await Canteen.findOne({ _id: id })
 
         if (!canteen)
             throw "Canteen Not Found"

@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-async function getByKeyword({
+async function canteenGetByKeyword({
     name
 }: { name: string }) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/canteen/canteen-get-by-keyword`, {
@@ -17,7 +17,7 @@ async function getByKeyword({
     return result
 }
 
-async function getById(id: mongoose.Types.ObjectId) {
+async function canteenGetById(id: mongoose.Types.ObjectId) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/canteen/canteen-get-by-id`, {
         method: "PATCH",
         body: JSON.stringify({
@@ -32,4 +32,4 @@ async function getById(id: mongoose.Types.ObjectId) {
     return result
 }
 
-export { getByKeyword, getById }
+export { canteenGetById, canteenGetByKeyword }

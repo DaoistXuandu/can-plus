@@ -7,12 +7,9 @@ import { UploadButton } from "@/utils/uploadthing";
 import { ok_alert } from "@/app/lib/alert";
 import { customerGet, customerUpdate } from "@/app/controller/customer";
 import { cookieGet } from "@/app/controller/session";
-import mongoose from "mongoose";
-import { info } from "console";
 import { merchantGet, merchantUpdate } from "@/app/controller/merchant";
-import DropDown from "./dropdown";
 import DropDownElement from "./dropdown";
-import { getById } from "@/app/controller/canteen";
+import { canteenGetById } from "@/app/controller/canteen";
 
 export default function Content() {
     const router = useRouter()
@@ -21,7 +18,7 @@ export default function Content() {
     const [dataNormal, setDataNormal] = useState(new Array<{ name: string, value: string }>(1))
     const [merchant, setMerchant] = useState(false)
     const [imgUrl, setImgUrl] = useState("")
-    const [location, setLocation] = useState("")
+    const [location, setLocation] = useState(new Array<{ name: string, location: string }>(1))
 
     async function getInformation() {
         const occupation_env = process.env.NEXT_PUBLIC_OCCUPATION
@@ -69,9 +66,11 @@ export default function Content() {
                 }
             ]
 
-            const canteen = await getById(info.canteenId)
-            if (canteen)
-                setLocation(canteen.location)
+            const canteen = await canteenGetById(info.canteenId)
+            if (canteen) {
+                console.log("A: ", canteen)
+                setLocation([{ name: "Lokasi Kantin", location: canteen.name }])
+            }
 
             setDataNormal(info_normal)
             setDataRequired(info_required)
@@ -139,7 +138,13 @@ export default function Content() {
                             index={3}
                             data={location}
                             required={true} /> */}
-                        <DropDownElement name={"Lokasi Kantin"} location={location} />
+                        {
+                            location.map(item => (
+                                <DropDownElement
+                                    name={item.name}
+                                    location={item.location} />
+                            ))
+                        }
                     </div>
                     {
                         dataRequired.map((item, index) => (

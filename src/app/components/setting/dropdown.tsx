@@ -1,4 +1,4 @@
-import { getByKeyword } from "@/app/controller/canteen";
+import { canteenGetByKeyword } from "@/app/controller/canteen";
 import { merchantUpdate } from "@/app/controller/merchant";
 import DropDown from "@/app/lib/icon/dropdown";
 import mongoose, { mongo } from "mongoose";
@@ -18,7 +18,7 @@ export default function DropDownElement({
     }[]>([])
 
     async function getData() {
-        const keyword = await getByKeyword({
+        const keyword = await canteenGetByKeyword({
             name: value
         })
         setData(keyword)

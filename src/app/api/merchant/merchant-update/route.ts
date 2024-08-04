@@ -34,7 +34,7 @@ export async function PATCH(request: NextRequest) {
                     telephone: telephone,
                     email: email,
                     image: image,
-                    merchanId: canteenId
+                    canteenId: canteenId
                 },
                 { new: true }
             )
