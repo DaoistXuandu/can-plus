@@ -1,34 +1,36 @@
-import getSession from "@/app/lib/getSession";
-import strToObj from "@/app/lib/mongoConvert";
-import User from "@/app/models/User";
+import { sessionGet } from "@/app/lib/session";
+import Customer from "@/app/models/customer/Customer";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(request: NextRequest) {
     try {
         let {
-            name = null,
-            telephone = null,
-            email = null
+            name,
+            telephone,
+            email,
+            image
         } = await request.json()
 
-        const id = strToObj(getSession() as string)
-        const user = await User.findById(id)
-        console.log(id)
+        const id = sessionGet()
+        const user = await Customer.findById(id)
 
         if (user) {
-            if (!name)
+            if (name == null)
                 name = user.name
-            if (!telephone)
+            if (telephone == null)
                 telephone = user.telephone
-            if (!email)
+            if (email == null)
                 email = user.email
+            if (image == null)
+                image = user.image
 
-            let update = await User.findByIdAndUpdate(
+            let update = await Customer.findByIdAndUpdate(
                 { _id: id },
                 {
                     name: name,
                     telephone: telephone,
                     email: email,
+                    image: image
                 },
                 { new: true }
             )

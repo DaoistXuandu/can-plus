@@ -1,29 +1,21 @@
 import { connectToDB } from "@/app/lib/dbConnect";
-import User from "@/app/models/User";
-import { cookies } from "next/headers";
+import Cart from "@/app/models/customer/Cart";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     try {
         await connectToDB()
-        const { username, password } = await request.json()
-
-        const result = await User.findOne({
-            username: username,
-            password: password
-        })
-
+        const result = await Cart.create({})
         if (result) {
-            const id = result._id.toString()
-            cookies().set("set-session-canplus", id)
             return NextResponse.json({
-                message: "Found Unique User",
-                state: true
+                message: "Success Creating a Cart",
+                state: true,
+                cart: result
             }, { status: 200 })
         }
         else {
             return NextResponse.json({
-                message: "Username or Password is wrong",
+                message: "Failed Creating a Cart",
                 state: false
             }, { status: 404 })
         }
@@ -34,4 +26,5 @@ export async function POST(request: NextRequest) {
             state: false
         }, { status: 400 })
     }
+
 }

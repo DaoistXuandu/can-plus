@@ -1,5 +1,5 @@
 import { connectToDB } from "@/app/lib/dbConnect";
-import User from "@/app/models/User";
+import Customer from "@/app/models/customer/Customer";
 import mongoose from "mongoose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -12,19 +12,18 @@ export async function GET(request: NextRequest) {
         if (cookie) {
             let value = cookie.value;
             let id = mongoose.Types.ObjectId.createFromHexString(value);
-            const user = await User.findById(id)
-            return NextResponse.json({
-                message: "Found Unique User",
-                user: user,
-                state: true
-            }, { status: 200 })
+            const user = await Customer.findById(id)
+            if (user) {
+                return NextResponse.json({
+                    message: "Found Unique User",
+                    user: user,
+                    state: true
+                }, { status: 200 })
+            }
+            else throw "Didn't found user"
         }
         else {
-            return NextResponse.json({
-                message: "Username or Password is wrong",
-                user: null,
-                state: false
-            }, { status: 404 })
+            throw "Session invalid"
         }
     }
     catch (err) {

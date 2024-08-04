@@ -2,17 +2,50 @@ import { button_comment, data, logout_comment } from "@/app/lib/content/setting"
 import Input from "./input";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { information, logOut } from "@/app/lib/controller/user";
-import { url } from "inspector";
+import { logOut, userGet } from "@/app/controller/user";
+import { UploadButton } from "@/utils/uploadthing";
+import { ok_alert } from "@/app/lib/alert";
+import { customerGet, customerUpdate } from "@/app/controller/customer";
+import { cookieGet } from "@/app/controller/session";
+import mongoose from "mongoose";
+import { info } from "console";
+import { merchantGet, merchantUpdate } from "@/app/controller/merchant";
+import DropDown from "./dropdown";
+import DropDownElement from "./dropdown";
+import { getById } from "@/app/controller/canteen";
 
 export default function Content() {
     const router = useRouter()
     const img = useRef<HTMLImageElement>(null)
     const [dataRequired, setDataRequired] = useState(new Array<{ name: string, value: string }>(3))
     const [dataNormal, setDataNormal] = useState(new Array<{ name: string, value: string }>(1))
+    const [merchant, setMerchant] = useState(false)
+    const [imgUrl, setImgUrl] = useState("")
+    const [location, setLocation] = useState("")
 
     async function getInformation() {
-        const info = await information()
+        const occupation_env = process.env.NEXT_PUBLIC_OCCUPATION
+        let info = null
+        let occupation = null
+        if (occupation_env) {
+            occupation = await cookieGet({ name: occupation_env })
+            switch (occupation) {
+                case "Customer":
+                    info = await customerGet()
+                    break;
+                default:
+                    info = await merchantGet()
+                    setMerchant(true)
+                    break;
+            }
+        }
+
+        const user_env = process.env.NEXT_PUBLIC_SESSION
+        let user = null
+        if (user_env) {
+            user = await userGet({ id: info.userId })
+        }
+
         if (info) {
             const info_required = [
                 {
@@ -29,15 +62,20 @@ export default function Content() {
                 }
             ]
 
-            const info_username = [
+            const info_normal = [
                 {
                     name: "Username",
-                    value: info.username
+                    value: user.username
                 }
             ]
 
-            setDataNormal(info_username)
+            const canteen = await getById(info.canteenId)
+            if (canteen)
+                setLocation(canteen.location)
+
+            setDataNormal(info_normal)
             setDataRequired(info_required)
+            setImgUrl(info.image)
         }
     }
 
@@ -45,49 +83,84 @@ export default function Content() {
         getInformation()
     }, [])
 
-    function handleFile(file: HTMLInputElement) {
-        console.log(file)
-        const current_image = img.current as HTMLImageElement
-        if (file.files && file.files.length > 0) {
-            const url = file.value
-            current_image.src = URL.createObjectURL(new Blob([file.files[0].name]));
-            console.log(current_image)
-            let ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
-            if (file.files && file.files[0] && (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    if (e.target?.result) {
-                        current_image.setAttribute('src', e.target.result as string);
-                    }
-                }
-                reader.readAsDataURL(file.files[0]);
-            }
+    async function updateImage(file: string) {
+        if (!merchant) {
+            const update = await customerUpdate({
+                name: null,
+                email: null,
+                telephone: null,
+                image: file
+            })
+        }
+        else {
+            const update = await merchantUpdate({
+                name: null,
+                email: null,
+                telephone: null,
+                image: file,
+                canteenId: null
+            })
         }
     }
 
     return (
         <div className="flex flex-col space-y-16 md:space-y-6   ">
-            <div className="mt-16 flex flex-col space-y-2">
+            <div className="mt-16 flex flex-col w-fit items-center space-y-2">
                 <h1 className="text-black text-xl font-bold">{data.image.name}</h1>
-                <div className={`relative w-28 h-28 bg-gray-400 flex items-center justify-center rounded-full`}>
-                    <p className="font-bold absolute z-10 cursor-pointer">{data.image.input}</p>
-                    <input type="file" className="relative z-20 opacity-0 h-full w-full cursor-pointer" onChange={e => handleFile(e.target)} />
-                    <img ref={img} className="absolute z-0 w-28 h-28 top-0 right-0 rounded-full" src="" alt="" />
+                <div className="flex flex-col items-center space-y-5">
+                    <div className={`relative w-28 h-28 bg-gray-400 flex items-center justify-center rounded-full`}>
+                        <img ref={img} className="absolute z-0 w-28 h-28 top-0 right-0 rounded-full" src={imgUrl} alt="" />
+                    </div>
+                    <div className="flex flex-col justify-start">
+                        <p className="font-bold cursor-pointer text-sm text-black">{data.image.input}</p>
+                        <UploadButton
+                            endpoint="imageUploader"
+                            onClientUploadComplete={(res) => {
+                                // Do something with the response
+                                // console.log("Files: ", res);
+                                const file = res[0].url
+                                updateImage(file)
+                                setImgUrl(file)
+                                ok_alert("Unggah Berhasil", "Upload Completed");
+                            }}
+                            onUploadError={(error: Error) => {
+                                // Do something with the error.
+                                alert(`ERROR! ${error.message}`);
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
             <div className="flex md:flex-row flex-col space-y-6 md:space-y-0 md:space-x-8">
                 <div className="w-full md:w-1/2 flex flex-col space-y-6">
+                    <div className={`${merchant ? '' : 'hidden'}`}>
+                        {/* <Input
+                            name={"Lokasi Kantin"}
+                            index={3}
+                            data={location}
+                            required={true} /> */}
+                        <DropDownElement name={"Lokasi Kantin"} location={location} />
+                    </div>
                     {
                         dataRequired.map((item, index) => (
-                            <Input name={item.name} index={index} data={item.value} required={true} />
+                            <Input
+                                occupation={merchant}
+                                name={item.name}
+                                index={index}
+                                data={item.value}
+                                required={true} />
                         ))
                     }
                 </div>
                 <div className="w-full md:w-1/2 flex flex-col space-y-6">
                     {
                         dataNormal.map((item, index) => (
-                            < Input name={item.name} index={index + 3} data={item.value} required={false} />
+                            < Input
+                                occupation={merchant}
+                                name={item.name}
+                                index={index + 4}
+                                data={item.value}
+                                required={false} />
                         ))
                     }
                 </div>

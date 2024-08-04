@@ -1,14 +1,15 @@
 import { navbar_auth, navbar_link } from "@/app/lib/content/dashboard";
 import { noto_sans } from "@/app/lib/font";
 import Menu from "@/app/lib/icon/menu";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function NavBar() {
     const [enableMenu, setEnableMenu] = useState(false)
-
+    const router = useRouter()
     return (
         <div className={`w-full flex flex-col md:flex-row h-fit ${noto_sans.className}`}>
-            <div className="w-1/5 hidden md:flex">
+            <div className="w-1/5 hidden md:flex cursor-pointer" onClick={e => router.push("/")}>
                 <img src="./image/CanPlus_Main_Logo.png" alt="" />
             </div>
             <div style={{ color: "#9A7D0A" }} className={`hidden md:flex w-4/5 flex flex-row justify-end space-x-8 items-center`}>

@@ -1,18 +1,22 @@
 import mongoose, { Schema } from 'mongoose';
 
-const UserSchema = new Schema({
-    username: {
+const OrderSchema = new Schema({
+    cartId: {
+        type: mongoose.Types.ObjectId,
+        required: true
+    },
+    name: {
         type: String,
         required: true
     },
-    password: {
+    price: {
         type: String,
         required: true
     },
-    occupation: {
+    quantity: {
         type: Number,
         required: true
     }
 }, { timestamps: false, versionKey: false });
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+export default mongoose.models.Order || mongoose.model("Order", OrderSchema);

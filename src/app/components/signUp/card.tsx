@@ -1,11 +1,11 @@
 import { body, title } from "@/app/lib/content/signUp";
 import Input from "./input";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Choice from "./choice";
 import Button from "./button"
 import { useRouter } from "next/navigation";
 import { error_alert, ok_alert } from "@/app/lib/alert";
-import { createUser } from "@/app/lib/controller/user";
+import { userCreate } from "@/app/controller/user";
 
 export default function Card() {
     const [username, setUsername] = useState("")
@@ -16,8 +16,9 @@ export default function Card() {
 
     const router = useRouter()
 
-    async function handleSignUp() {
-        // router.push("/pages/customer/main")
+    async function handleSignUp(e: FormEvent) {
+        e.preventDefault()
+
         if (username == "" || password == "" || confirm == "") {
             error_alert("Username, Password atau Konfirmasi tidak boleh kosong")
             return
@@ -29,7 +30,7 @@ export default function Card() {
         }
 
         setDisabled(true)
-        const result = await createUser(username, password, choice - 1)
+        const result = await userCreate(username.trim(), password, choice - 1)
         if (!result.availibility) {
             error_alert("Username Telah Dipakai!")
             setDisabled(false)
@@ -42,15 +43,14 @@ export default function Card() {
             )
 
         setDisabled(false)
-        router.push("/pages/login")
+        router.push("/pages/user/setting")
     }
 
-    useEffect(() => {
-        console.log(disabled)
-    }, [disabled])
 
     return (
-        <div style={{ backgroundColor: "#7D6608" }} className={`h-fit w-fit md:w-full bg-rose-200 rounded-2xl shadow-2xl p-10 pt-12 flex flex-col`}>
+        <form
+            onSubmit={handleSignUp}
+            style={{ backgroundColor: "#7D6608" }} className={`h-fit w-fit md:w-full bg-rose-200 rounded-2xl shadow-2xl p-10 pt-12 flex flex-col`}>
             <h1 className="w-full flex justify-center text-6xl font-bold">{title}</h1>
             <div className="mt-12 flex flex-col space-y-6">
                 <Input name={body.username} setValue={setUsername} type="text" />
@@ -69,8 +69,8 @@ export default function Card() {
                 </div>
             </div>
             <div>
-                <Button disabled={disabled} handle={handleSignUp} />
+                <Button disabled={disabled} />
             </div>
-        </div>
+        </form>
     )
 }

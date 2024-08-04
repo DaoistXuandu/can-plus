@@ -1,6 +1,6 @@
-import { updateUser } from "@/app/lib/controller/user"
+import { customerUpdate } from "@/app/controller/customer"
+import { merchantUpdate } from "@/app/controller/merchant"
 import Pen from "@/app/lib/icon/pen"
-import { stat } from "fs"
 import { useEffect, useState } from "react"
 
 export default function Input(
@@ -8,8 +8,9 @@ export default function Input(
         name,
         required,
         data,
-        index
-    }: { name: string, required: boolean, data: string, index: number }) {
+        index,
+        occupation
+    }: { name: string, required: boolean, data: string, index: number, occupation: boolean }) {
 
     const [editable, setEditable] = useState(false)
     const [prev, setPrev] = useState(data)
@@ -17,16 +18,29 @@ export default function Input(
 
     useEffect(() => {
         if (prev != value && editable == false) {
+            setPrev(value)
             change()
         }
     }, [editable])
 
     async function change() {
-        const update = await updateUser({
-            name: (index == 0 ? value : null),
-            telephone: (index == 1 ? value : null),
-            email: (index == 2 ? value : null)
-        })
+        if (!occupation) {
+            const update = await customerUpdate({
+                name: (index == 0 ? value : null),
+                telephone: (index == 1 ? value : null),
+                email: (index == 2 ? value : null),
+                image: null
+            })
+        }
+        else {
+            const update = await merchantUpdate({
+                name: (index == 0 ? value : null),
+                telephone: (index == 1 ? value : null),
+                email: (index == 2 ? value : null),
+                image: null,
+                canteenId: null
+            })
+        }
     }
 
     return (

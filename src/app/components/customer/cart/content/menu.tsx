@@ -25,7 +25,7 @@ export default function Menu({
         if (note == "")
             object.style.height = "50px"
 
-        console.log(object.scrollHeight, object.offsetHeight, object.clientHeight)
+        // console.log(object.scrollHeight, object.offsetHeight, object.clientHeight)
     }, [note])
 
     return (
