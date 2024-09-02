@@ -3,7 +3,6 @@ import { merchantCreate } from "@/app/controller/merchant";
 import { occupationCreate, sessionCreate } from "@/app/lib/session";
 import { connectToDB } from "@/app/lib/dbConnect";
 import User from "@/app/models/User";
-import { create } from "domain";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {

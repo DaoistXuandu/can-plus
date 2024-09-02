@@ -5,6 +5,9 @@ const MerchantSchema = new Schema({
         type: mongoose.Types.ObjectId,
         required: true
     },
+    searchId: {
+        type: mongoose.Types.ObjectId,
+    },
     canteenId: mongoose.Types.ObjectId,
 
     name: String,
@@ -16,8 +19,6 @@ const MerchantSchema = new Schema({
 
     time_open: Date,
     time_close: Date,
-
-    popularity: Number
 }, { timestamps: false, versionKey: false });
 
 export default mongoose.models.Merchant || mongoose.model("Merchant", MerchantSchema);

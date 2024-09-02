@@ -18,7 +18,8 @@ export default function Content() {
     const [dataNormal, setDataNormal] = useState(new Array<{ name: string, value: string }>(1))
     const [merchant, setMerchant] = useState(false)
     const [imgUrl, setImgUrl] = useState("")
-    const [location, setLocation] = useState(new Array<{ name: string, location: string }>(1))
+    // const [location, setLocation] = useState(new Array<{ name: string, location: string }>(1))
+    const [location, setLocation] = useState("")
 
     async function getInformation() {
         const occupation_env = process.env.NEXT_PUBLIC_OCCUPATION
@@ -67,10 +68,14 @@ export default function Content() {
             ]
 
             const canteen = await canteenGetById(info.canteenId)
-            if (canteen) {
-                console.log("A: ", canteen)
-                setLocation([{ name: "Lokasi Kantin", location: canteen.name }])
-            }
+            setLocation("alpha")
+            // if (canteen) {
+            //     console.log("A: ", canteen)
+            //     setLocation([{ name: "Lokasi Kantin", location: canteen.name }])
+            // }
+            // else {
+            // setLocation([{ name: "Lokasi Kantin", location: "alpha" }])
+            // }
 
             setDataNormal(info_normal)
             setDataRequired(info_required)
@@ -131,31 +136,33 @@ export default function Content() {
                 </div>
             </div>
             <div className="flex md:flex-row flex-col space-y-6 md:space-y-0 md:space-x-8">
-                <div className="w-full md:w-1/2 flex flex-col space-y-6">
-                    <div className={`${merchant ? '' : 'hidden'}`}>
-                        {/* <Input
-                            name={"Lokasi Kantin"}
-                            index={3}
-                            data={location}
-                            required={true} /> */}
-                        {
+                <div className="w-full md:w-1/2 flex flex-col">
+                    <div className={`${merchant ? '' : 'hidden'} mb-6`}>
+                        {/* {
                             location.map(item => (
                                 <DropDownElement
                                     name={item.name}
                                     location={item.location} />
                             ))
+                        } */}
+                        {
+                            <DropDownElement
+                                name={"bukan alpha"}
+                                location={location} />
                         }
                     </div>
-                    {
-                        dataRequired.map((item, index) => (
-                            <Input
-                                occupation={merchant}
-                                name={item.name}
-                                index={index}
-                                data={item.value}
-                                required={true} />
-                        ))
-                    }
+                    <div className="flex flex-col space-y-6">
+                        {
+                            dataRequired.map((item, index) => (
+                                <Input
+                                    occupation={merchant}
+                                    name={item.name}
+                                    index={index}
+                                    data={item.value}
+                                    required={true} />
+                            ))
+                        }
+                    </div>
                 </div>
                 <div className="w-full md:w-1/2 flex flex-col space-y-6">
                     {

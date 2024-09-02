@@ -9,6 +9,10 @@ const SearchSchema = new Schema({
         type: String,
         required: true
     },
+    link: {
+        type: String,
+        required: true
+    },
     popularity: Number
 }, { timestamps: false, versionKey: false });
 

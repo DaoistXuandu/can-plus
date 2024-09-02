@@ -29,7 +29,7 @@ export default function Review() {
                     </div>
                 </div>
                 <div className="md:w-8/12 items-center flex mt-5 md:mt-0">
-                    <div className="text-md md:text-xl h-40 md:h-48 overflow-hidden scroll-smooth overflow-scroll text-ellipsis">
+                    <div className="text-md md:text-xl h-40 md:h-48 overflow-hidden scroll-smooth scroll-auto overflow-y-auto text-ellipsis">
                         {review_user[reviewIndex].comment}
                     </div>
                 </div>

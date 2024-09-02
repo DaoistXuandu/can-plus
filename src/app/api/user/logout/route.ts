@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
     try {
         const result = cookies().delete("set-session-canplus")
+        cookies().delete("set-canplus-occupation")
 
         if (result) {
             return NextResponse.json({

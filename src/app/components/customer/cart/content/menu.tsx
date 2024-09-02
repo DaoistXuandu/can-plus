@@ -30,7 +30,7 @@ export default function Menu({
 
     return (
         <div className="flex flex-row items-center w-full h-full space-x-5">
-            <div className="w-10/12 md:w-11/12 flex flex-col md:flex-row h-fit md:space-x-5 select-none overflow-scroll items-center">
+            <div className="w-10/12 md:w-11/12 flex flex-col md:flex-row h-fit md:space-x-5 select-none overflow-auto items-center">
                 <div className="flex flex-row justify-start items-center w-full md:w-1/12">
                     <div className="w-1/4 md:w-full">
                         <img src={image} className="rounded-xl w-full aspect-square" alt="" />

@@ -9,9 +9,9 @@ export default function Content() {
     const [choice, setchoice] = useState(0)
     return (
         <div>
-            <div className="h-80 md:h-52"></div>
+            {/* <div className="h-80 md:h-52"></div> */}
             <div>
-                <div className="text-black pl-5 pr-5 mt-8 md:mt-10 md:pl-10 md:pr-10 lg:pl-16 lg:pr-16 flex flex-col space-y-4 pb-16">
+                <div className="relative text-black pl-5 pr-5 mt-8 md:mt-10 md:pl-10 md:pr-10 lg:pl-16 lg:pr-16 flex flex-col space-y-4 pb-16">
                     <h1 className="font-bold text-3xl md:text-4xl">{main.section}</h1>
                     <div className="flex flex-col space-y-8">
                         <Menu name={menu.name} price={menu.price} image={menu.image} quantity={1} />

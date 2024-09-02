@@ -9,11 +9,17 @@ export async function PATCH(request: NextRequest) {
             telephone,
             email,
             image,
-            canteenId
+            canteenId,
+            description,
+            rating,
+            time_open,
+            time_close,
+            popularity,
+            searchId
         } = await request.json()
 
         const id = sessionGet()
-        const user = await Merchant.findById(id)
+        const user = await Merchant.findOne({ _id: id })
 
         if (user) {
             if (name == null)
@@ -26,6 +32,18 @@ export async function PATCH(request: NextRequest) {
                 image = user.image
             if (canteenId == null)
                 canteenId = user.canteenId
+            if (description == null)
+                description = user.description
+            if (rating == null)
+                rating = user.rating
+            if (time_open == null)
+                time_open = user.time_open
+            if (time_close == null)
+                time_close = user.time_close
+            if (popularity == null)
+                popularity = user.popularity
+            if (searchId == null)
+                searchId = user.searchId
 
             let update = await Merchant.findByIdAndUpdate(
                 { _id: id },
@@ -34,7 +52,13 @@ export async function PATCH(request: NextRequest) {
                     telephone: telephone,
                     email: email,
                     image: image,
-                    canteenId: canteenId
+                    canteenId: canteenId,
+                    description: description,
+                    rating: rating,
+                    time_open: time_open,
+                    time_close: time_close,
+                    popularity: popularity,
+                    searchId: searchId
                 },
                 { new: true }
             )

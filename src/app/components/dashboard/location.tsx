@@ -36,7 +36,7 @@ export default function Location() {
                     </div>
                 </div>
             </div>
-            <a href={canPlus_location} className="md:w-1/2 hidden md:flex">
+            <a href={canPlus_location} className="md:w-1/2 flex justify-center hidden md:flex">
                 <img src="./image/dashboard_3.png" alt="" />
             </a>
         </div>

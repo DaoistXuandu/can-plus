@@ -17,6 +17,10 @@ export default function DropDownElement({
         location: string
     }[]>([])
 
+    useEffect(() => {
+        setValue(location)
+    }, [location])
+
     async function getData() {
         const keyword = await canteenGetByKeyword({
             name: value
@@ -71,7 +75,7 @@ export default function DropDownElement({
                         <DropDown size={30} stroke={2} />
                     </div>
                 </div>
-                <div className={`${editable ? '' : 'hidden'} ring-inset ring-2 shadow-2xl ring-yellow-300 absolute z-50 overflow-scroll w-full max-h-68 rounded-xl mt-5`}>
+                <div className={`${editable ? '' : 'hidden'} ring-inset ring-2 shadow-2xl ring-yellow-300 absolute z-50 overflow-auto w-full max-h-68 rounded-xl mt-5`}>
                     {
                         data.map((item, index) => (
                             <div

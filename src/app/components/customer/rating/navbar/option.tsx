@@ -1,5 +1,5 @@
 import { navbar_option } from "@/app/lib/content/customer/main";
-import { logOut } from "@/app/lib/controller/user";
+import { logOut } from "@/app/controller/user";
 import Cart from "@/app/lib/icon/cart";
 import Delivery from "@/app/lib/icon/delivery";
 import LogOut from "@/app/lib/icon/logout";

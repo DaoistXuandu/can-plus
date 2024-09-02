@@ -11,7 +11,7 @@ export default function Order({ orderIndex }:
 
     return (
         <div className="flex flex-row items-center w-full h-full space-x-5">
-            <div className="w-full flex flex-col md:flex-row h-fit md:space-x-7 select-none overflow-scroll items-center">
+            <div className="w-full flex flex-col md:flex-row h-fit md:space-x-7 select-none overflow-auto items-center">
                 <div className="flex flex-col justify-center w-full">
                     <h1 className="font-bold text-3xl">{currrentOrder.name}</h1>
                     <div className="space-y-1 mt-1">

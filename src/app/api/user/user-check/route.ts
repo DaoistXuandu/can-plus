@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
             switch (result.occupation) {
                 case 0:
                     const customer = await Customer.findOne({ userId: result._id })
+                    // console.log(customer)
                     if (!customer)
                         throw "User have no customer occupation position"
 

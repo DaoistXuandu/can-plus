@@ -13,7 +13,7 @@ export default function Content({ content }: {
 }) {
     return (
         <div className="flex flex-col pb-24 pl-10 pr-10 lg:pl-16 lg:pr-16">
-            <div className="h-80 md:h-72"></div>
+            {/* <div className="h-80 md:h-72"></div> */}
             <div className="relative z-0 overflow-hidden flex flex-col md:flex-row md:flex-wrap gap-12">
                 {
                     content.map(item => (

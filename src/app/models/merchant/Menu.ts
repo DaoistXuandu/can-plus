@@ -5,6 +5,9 @@ const MenuSchema = new Schema({
         type: mongoose.Types.ObjectId,
         required: true
     },
+    searchId: {
+        type: mongoose.Types.ObjectId,
+    },
     name: {
         type: String,
         required: true
