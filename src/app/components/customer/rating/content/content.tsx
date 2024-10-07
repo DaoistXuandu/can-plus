@@ -32,11 +32,14 @@ export default function Content() {
                                 <label className="text-xl font-bold" htmlFor="rating">{navbar.main[0]}</label>
                                 <div className="flex flex-row space-x-1 transition-all duration-300">
                                     {
-                                        data.map(item => (
-                                            <div onClick={e => setStar(item)} className={`cursor-pointer ${item <= star ? 'text-yellow-300 transition-all duration-300' : ''}`}>
-                                                <Star size={25} stroke={2} />
-                                            </div>
-                                        ))
+                                        data ?
+                                            data.map(item => (
+                                                <div onClick={e => setStar(item)} className={`cursor-pointer ${item <= star ? 'text-yellow-300 transition-all duration-300' : ''}`}>
+                                                    <Star size={25} stroke={2} />
+                                                </div>
+                                            ))
+                                            :
+                                            "Tidak Ada Data!"
                                     }
                                 </div>
                             </div>

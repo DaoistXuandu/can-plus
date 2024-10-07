@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useState } from "react";
 import Button from "./button";
 import { useRouter } from "next/navigation";
 import { error_alert, ok_alert } from "@/app/lib/alert";
-import { userCheck } from "@/app/controller/user";
+import { customerCheck, customerGet } from "@/app/controller/customer";
 
 export default function Card() {
     const [username, setUsername] = useState("")
@@ -20,7 +20,7 @@ export default function Card() {
         }
 
         setDisabled(true)
-        const result = await userCheck(username, password)
+        const result = await customerCheck(username, password)
         if (result) {
             ok_alert("Login Berhasil", "")
             router.push("/pages/customer/main")

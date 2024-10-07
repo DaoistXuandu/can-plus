@@ -2,46 +2,26 @@ import { button_comment, data, logout_comment } from "@/app/lib/content/setting"
 import Input from "./input";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { logOut, userGet } from "@/app/controller/user";
 import { UploadButton } from "@/utils/uploadthing";
 import { ok_alert } from "@/app/lib/alert";
-import { customerGet, customerUpdate } from "@/app/controller/customer";
-import { cookieGet } from "@/app/controller/session";
-import { merchantGet, merchantUpdate } from "@/app/controller/merchant";
-import DropDownElement from "./dropdown";
-import { canteenGetById } from "@/app/controller/canteen";
+import { customerGet, customerLogOut, customerUpdate } from "@/app/controller/customer";
 
 export default function Content() {
     const router = useRouter()
     const img = useRef<HTMLImageElement>(null)
     const [dataRequired, setDataRequired] = useState(new Array<{ name: string, value: string }>(3))
     const [dataNormal, setDataNormal] = useState(new Array<{ name: string, value: string }>(1))
-    const [merchant, setMerchant] = useState(false)
     const [imgUrl, setImgUrl] = useState("")
     // const [location, setLocation] = useState(new Array<{ name: string, location: string }>(1))
     const [location, setLocation] = useState("")
 
     async function getInformation() {
-        const occupation_env = process.env.NEXT_PUBLIC_OCCUPATION
-        let info = null
-        let occupation = null
-        if (occupation_env) {
-            occupation = await cookieGet({ name: occupation_env })
-            switch (occupation) {
-                case "Customer":
-                    info = await customerGet()
-                    break;
-                default:
-                    info = await merchantGet()
-                    setMerchant(true)
-                    break;
-            }
-        }
+        let info = await customerGet()
 
         const user_env = process.env.NEXT_PUBLIC_SESSION
         let user = null
         if (user_env) {
-            user = await userGet({ id: info.userId })
+            user = await customerGet()
         }
 
         if (info) {
@@ -67,16 +47,6 @@ export default function Content() {
                 }
             ]
 
-            const canteen = await canteenGetById(info.canteenId)
-            setLocation("alpha")
-            // if (canteen) {
-            //     console.log("A: ", canteen)
-            //     setLocation([{ name: "Lokasi Kantin", location: canteen.name }])
-            // }
-            // else {
-            // setLocation([{ name: "Lokasi Kantin", location: "alpha" }])
-            // }
-
             setDataNormal(info_normal)
             setDataRequired(info_required)
             setImgUrl(info.image)
@@ -88,23 +58,12 @@ export default function Content() {
     }, [])
 
     async function updateImage(file: string) {
-        if (!merchant) {
-            const update = await customerUpdate({
-                name: null,
-                email: null,
-                telephone: null,
-                image: file
-            })
-        }
-        else {
-            const update = await merchantUpdate({
-                name: null,
-                email: null,
-                telephone: null,
-                image: file,
-                canteenId: null
-            })
-        }
+        const update = await customerUpdate({
+            name: null,
+            email: null,
+            telephone: null,
+            image: file
+        })
     }
 
     return (
@@ -137,25 +96,11 @@ export default function Content() {
             </div>
             <div className="flex md:flex-row flex-col space-y-6 md:space-y-0 md:space-x-8">
                 <div className="w-full md:w-1/2 flex flex-col">
-                    <div className={`${merchant ? '' : 'hidden'} mb-6`}>
-                        {/* {
-                            location.map(item => (
-                                <DropDownElement
-                                    name={item.name}
-                                    location={item.location} />
-                            ))
-                        } */}
-                        {
-                            <DropDownElement
-                                name={"bukan alpha"}
-                                location={location} />
-                        }
-                    </div>
                     <div className="flex flex-col space-y-6">
                         {
                             dataRequired.map((item, index) => (
                                 <Input
-                                    occupation={merchant}
+                                    occupation={false}
                                     name={item.name}
                                     index={index}
                                     data={item.value}
@@ -168,7 +113,7 @@ export default function Content() {
                     {
                         dataNormal.map((item, index) => (
                             < Input
-                                occupation={merchant}
+                                occupation={false}
                                 name={item.name}
                                 index={index + 4}
                                 data={item.value}
@@ -183,7 +128,7 @@ export default function Content() {
                 </button>
                 <button
                     className="bg-yellow-500 w-full bg-flex justify-center p-4 pl-20 pr-20 bg-yellow-300 w-fit rounded-full font-bold text-white text-lg"
-                    onClick={e => { router.push("/"); logOut() }}>
+                    onClick={e => { router.push("/"); customerLogOut() }}>
                     {logout_comment}
                 </button>
             </div>

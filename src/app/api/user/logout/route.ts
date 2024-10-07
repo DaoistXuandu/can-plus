@@ -3,8 +3,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
     try {
-        const result = cookies().delete("set-session-canplus")
-        cookies().delete("set-canplus-occupation")
+        const session = process.env.NEXT_PUBLIC_SESSION
+        let result = null
+        if (session)
+            result = cookies().delete(session)
 
         if (result) {
             return NextResponse.json({

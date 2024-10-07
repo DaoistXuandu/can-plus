@@ -2,18 +2,22 @@
 import mongoose, { Schema } from 'mongoose';
 
 const CustomerSchema = new Schema({
-    userId: {
-        type: mongoose.Types.ObjectId,
+    username: {
+        type: String,
         required: true
     },
-    cartId: {
-        type: mongoose.Types.ObjectId,
+    password: {
+        type: String,
         required: true
     },
+    merchantCart: mongoose.Types.ObjectId,
     name: String,
     telephone: String,
     email: String,
     image: String
+
 }, { timestamps: false, versionKey: false });
+
+CustomerSchema.index({ username: 1 })
 
 export default mongoose.models.Customer || mongoose.model("Customer", CustomerSchema);

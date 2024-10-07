@@ -5,10 +5,18 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
     try {
         await connectToDB()
-        const { userId } = await request.json()
+        const { canteen, name, image, description, rating, time_open, time_close, email, telephone } = await request.json()
 
         const merchant = await Merchant.create({
-            userId: userId
+            canteen: canteen,
+            name: name,
+            image: image,
+            description: description || "",
+            rating: rating || "",
+            time_close: time_close || new Date(),
+            time_open: time_open || new Date(),
+            email: email || "",
+            telephone: telephone || ""
         })
 
         if (merchant) {

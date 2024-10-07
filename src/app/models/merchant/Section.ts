@@ -11,4 +11,6 @@ const SectionSchema = new Schema({
     }
 }, { timestamps: false, versionKey: false });
 
+SectionSchema.index({ name: 1 })
+
 export default mongoose.models.Section || mongoose.model("Section", SectionSchema);

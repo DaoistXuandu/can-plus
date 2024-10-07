@@ -1,11 +1,13 @@
 import { response } from "express"
 import mongoose from "mongoose"
 
-async function merchantCreate({ userId }: { userId: mongoose.Types.ObjectId }) {
+async function merchantCreate(canteen: string, name: string, image: string) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/merchant/merchant-create`, {
         method: 'POST',
         body: JSON.stringify({
-            userId: userId
+            canteen: canteen,
+            name: name,
+            image: image
         }),
         headers: {
             'content-type': 'application/json'
@@ -16,9 +18,12 @@ async function merchantCreate({ userId }: { userId: mongoose.Types.ObjectId }) {
     return result
 }
 
-async function merchantGet() {
+async function merchantGet(id: string) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/merchant/merchant-get`, {
-        method: 'GET',
+        method: 'PATCH',
+        body: JSON.stringify({
+            id: id
+        }),
         headers: {
             'content-type': 'application/json'
         }
@@ -28,6 +33,20 @@ async function merchantGet() {
     return result.user
 }
 
+async function merchantGetAll(name: string) {
+    const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/merchant/merchant-get-all`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            name: name
+        }),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => data)
+    return result.merchant
+}
 async function merchantUpdate({
     name, email, telephone, image, canteenId
 }: {
@@ -56,4 +75,4 @@ async function merchantUpdate({
     return result
 }
 
-export { merchantCreate, merchantGet, merchantUpdate }
+export { merchantCreate, merchantGet, merchantUpdate, merchantGetAll }

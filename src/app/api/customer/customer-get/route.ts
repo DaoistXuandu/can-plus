@@ -7,7 +7,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
     try {
         await connectToDB()
-        const cookie = cookies().get("set-session-canplus")
+        const session = process.env.NEXT_PUBLIC_SESSION
+        let cookie = null
+        if (session)
+            cookie = cookies().get("set-session-canplus")
 
         if (cookie) {
             let value = cookie.value;

@@ -6,20 +6,32 @@ import { useEffect, useState } from "react";
 import Location from "@/app/lib/icon/location";
 import Clock from "@/app/lib/icon/clock";
 import { data } from "@/app/lib/content/setting";
-import { stall } from "@/app/lib/content/customer/restaurant";
 import Star from "@/app/lib/icon/star";
 import DropDown from "@/app/lib/icon/dropdown";
 import Shop from "@/app/lib/icon/shop";
 import { main } from "@/app/lib/content/customer/cart";
 import { useRouter } from "next/navigation";
+import { customerGetMerchant } from "@/app/controller/customer";
+import { useFormState } from "react-dom";
+import { merchantGet } from "@/app/controller/merchant";
 
 export default function NavBar() {
     const [statusMenu, setStatusMenu] = useState(false)
     const [zStatus, setZStatus] = useState(true)
     const [menu, setMenu] = useState(0)
     const [menuOption, setMenuOption] = useState(false)
-
+    const [merchant, setMerchant] = useState<{ name: string, canteen: string }>({ name: "", canteen: "" })
     const router = useRouter()
+
+    async function getMerchant() {
+        const merchantData = await customerGetMerchant()
+        const currentMerchant = await merchantGet(merchantData)
+        setMerchant(currentMerchant)
+    }
+
+    useEffect(() => {
+        getMerchant()
+    }, [])
 
     useEffect(() => {
         if (statusMenu == true)
@@ -29,6 +41,7 @@ export default function NavBar() {
                 setZStatus(true)
         }, 800)
     }, [statusMenu])
+
 
     return (
         <div style={{ backgroundColor: "#ECF0F1" }} className=" w-full pb-3">
@@ -81,10 +94,10 @@ export default function NavBar() {
                                     flex flex-col md:flex-row justify-start md:items-end md:space-x-3
                                 ">
                                 <div className="flex flex-row">
-                                    <h1 className="font-medium text-2xl">{stall[0].name}</h1>
+                                    <h1 className="font-medium text-2xl">{merchant.name}</h1>
                                     <p className="hidden md:flex font-medium text-xl md:text-2xl">,</p>
                                 </div>
-                                <p className="text-lg">{stall[0].location}</p>
+                                <p className="text-lg">{merchant.canteen}</p>
                             </div>
 
                         </div>

@@ -1,18 +1,18 @@
+import { canteen } from "@/app/lib/content/customer/canteen";
 import Canteen from "@/app/models/merchant/Canteen";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(request: NextRequest) {
     try {
         const { name } = await request.json()
-        const pattern = new RegExp(name, 'i')
-        const canteen = await Canteen.find({
-            name: { $regex: pattern }
+        const canteen = await Canteen.findOne({
+            name: name
         })
         return NextResponse.json({
-            message: "Succes getting cantenn with keyword",
+            message: "Succes getting a cantenn with keyword",
             state: true,
             canteen: canteen
-        }, { status: 400 })
+        }, { status: 200 })
     }
     catch (err) {
         return NextResponse.json({

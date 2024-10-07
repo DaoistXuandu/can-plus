@@ -1,24 +1,27 @@
 import mongoose, { Schema } from 'mongoose';
 
 const MerchantSchema = new Schema({
-    userId: {
-        type: mongoose.Types.ObjectId,
+    canteen: {
+        type: String,
         required: true
     },
-    searchId: {
-        type: mongoose.Types.ObjectId,
+    name: {
+        type: String,
+        required: true
     },
-    canteenId: mongoose.Types.ObjectId,
+    image: {
+        type: String,
+        required: true
+    },
 
-    name: String,
     description: String,
     rating: String,
-    image: String,
-    telephone: String,
-    email: String,
 
     time_open: Date,
     time_close: Date,
+
+    email: String,
+    telephone: String
 }, { timestamps: false, versionKey: false });
 
 export default mongoose.models.Merchant || mongoose.model("Merchant", MerchantSchema);

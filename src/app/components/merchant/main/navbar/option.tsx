@@ -1,4 +1,4 @@
-import { logOut } from "@/app/controller/user";
+import { customerLogOut } from "@/app/controller/customer";
 import { navbar_option } from "@/app/lib/content/customer/main";
 import Bill from "@/app/lib/icon/bill";
 import Home from "@/app/lib/icon/home";
@@ -20,7 +20,7 @@ export default function Option() {
     const router = useRouter()
 
     async function handleLogOut() {
-        const logout = await logOut()
+        const logout = await customerLogOut()
         router.push("/")
     }
 

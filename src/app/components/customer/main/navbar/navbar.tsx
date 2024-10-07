@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Suggestion from "./suggestion";
 import { useRouter } from "next/navigation";
 
-export default function NavBar({ type }: { type: number }) {
+export default function NavBar({ type }: { type: string }) {
     const [statusMenu, setStatusMenu] = useState(false)
     const [zStatus, setZStatus] = useState(true)
 
@@ -58,7 +58,7 @@ export default function NavBar({ type }: { type: number }) {
                     <Suggestion />
                 </div>
                 <div className="pl-5 pr-5 text-center md:text-left md:pl-12 md:pr-12 lg:pl-16 lg:pr-16 p-2 text-black font-medium text-3xl">
-                    <h1>{main_comment[type]}</h1>
+                    <h1>{type}</h1>
                 </div>
             </div>
         </div >

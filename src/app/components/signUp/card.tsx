@@ -5,7 +5,7 @@ import Choice from "./choice";
 import Button from "./button"
 import { useRouter } from "next/navigation";
 import { error_alert, ok_alert } from "@/app/lib/alert";
-import { userCreate } from "@/app/controller/user";
+import { customerCreate } from "@/app/controller/customer";
 
 export default function Card() {
     const [username, setUsername] = useState("")
@@ -30,9 +30,9 @@ export default function Card() {
         }
 
         setDisabled(true)
-        const result = await userCreate(username.trim(), password, choice - 1)
-        if (!result.availibility) {
-            error_alert("Username Telah Dipakai!")
+        const result = await customerCreate(username.trim(), password)
+        if (!result.state) {
+            error_alert(result.message)
             setDisabled(false)
             return;
         }
@@ -43,7 +43,7 @@ export default function Card() {
             )
 
         setDisabled(false)
-        router.push("/pages/user/setting")
+        router.push("/pages/customer/main")
     }
 
 
@@ -57,17 +57,17 @@ export default function Card() {
                 <Input name={body.password.init} setValue={setPassword} type="password" />
                 <Input name={body.password.confirm} setValue={setConfirm} type="password" />
             </div>
-            <div className="mt-5 flex flex-col space-y-4">
+            {/* <div className="mt-5 flex flex-col space-y-4">
                 <h1 className="font-medium text-md">{body.type.title}</h1>
                 <div className="w-full flex flex-row space-x-5">
-                    <div className="w-1/2">
+                    <div className="w-full">
                         <Choice choice={choice} name={body.type.first} setStatus={setChoice} index={1} />
                     </div>
                     <div className="w-1/2">
                         <Choice choice={choice} name={body.type.second} setStatus={setChoice} index={2} />
-                    </div>
+                    </div> 
                 </div>
-            </div>
+            </div> */}
             <div>
                 <Button disabled={disabled} />
             </div>

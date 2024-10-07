@@ -8,18 +8,25 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
     try {
         await connectToDB()
-        const { userId } = await request.json()
+        const { username, password } = await request.json()
 
-        const cart = await cartCreate()
-        const cartId = cart.cart._id
+        if (username && password) {
+            const exist = await Customer.findOne({ username: username })
+            if (exist) {
+                throw "User with this username already exist"
+            }
 
-        if (cartId && userId) {
             const customer = await Customer.create({
-                userId: userId,
-                cartId: cartId
+                username: username,
+                password: password
             })
 
             if (customer) {
+                let customer_id = customer._id
+                let session = process.env.NEXT_PUBLIC_SESSION
+                if (session)
+                    cookies().set(session, customer_id)
+
                 return NextResponse.json({
                     message: "Success creating new customer",
                     state: true,
@@ -31,7 +38,7 @@ export async function POST(request: NextRequest) {
             }
         }
         else {
-            throw "No cart or id found"
+            throw "Usernama or password incomplete"
         }
     }
     catch (err) {

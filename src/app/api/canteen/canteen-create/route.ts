@@ -5,11 +5,12 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
     try {
         await connectToDB()
-        const { name, location } = await request.json()
+        const { name, location, image } = await request.json()
 
         const result = await Canteen.create({
             name: name,
-            location: location
+            location: location,
+            image: image
         })
 
         if (result) {

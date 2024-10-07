@@ -5,9 +5,6 @@ const MenuSchema = new Schema({
         type: mongoose.Types.ObjectId,
         required: true
     },
-    searchId: {
-        type: mongoose.Types.ObjectId,
-    },
     name: {
         type: String,
         required: true
@@ -18,5 +15,7 @@ const MenuSchema = new Schema({
     },
     image: String
 }, { timestamps: false, versionKey: false });
+
+MenuSchema.index({ sectionId: 1, name: 1, price: -1 })
 
 export default mongoose.models.Menu || mongoose.model("Menu", MenuSchema);

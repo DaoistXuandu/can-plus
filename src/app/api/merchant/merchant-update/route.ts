@@ -1,24 +1,24 @@
 import { sessionGet } from "@/app/lib/session";
 import Merchant from "@/app/models/merchant/Merchant";
+import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(request: NextRequest) {
     try {
         let {
+            id,
             name,
             telephone,
             email,
             image,
-            canteenId,
+            canteen,
             description,
             rating,
             time_open,
             time_close,
-            popularity,
-            searchId
         } = await request.json()
 
-        const id = sessionGet()
+        id = new mongoose.Types.ObjectId(id)
         const user = await Merchant.findOne({ _id: id })
 
         if (user) {
@@ -30,8 +30,8 @@ export async function PATCH(request: NextRequest) {
                 email = user.email
             if (image == null)
                 image = user.image
-            if (canteenId == null)
-                canteenId = user.canteenId
+            if (canteen == null)
+                canteen = user.canteen
             if (description == null)
                 description = user.description
             if (rating == null)
@@ -40,10 +40,6 @@ export async function PATCH(request: NextRequest) {
                 time_open = user.time_open
             if (time_close == null)
                 time_close = user.time_close
-            if (popularity == null)
-                popularity = user.popularity
-            if (searchId == null)
-                searchId = user.searchId
 
             let update = await Merchant.findByIdAndUpdate(
                 { _id: id },
@@ -52,20 +48,18 @@ export async function PATCH(request: NextRequest) {
                     telephone: telephone,
                     email: email,
                     image: image,
-                    canteenId: canteenId,
+                    canteen: canteen,
                     description: description,
                     rating: rating,
                     time_open: time_open,
                     time_close: time_close,
-                    popularity: popularity,
-                    searchId: searchId
                 },
                 { new: true }
             )
 
             return NextResponse.json(
                 {
-                    message: "Success Update User",
+                    message: "Success Update Merchant",
                     state: true,
                     update: update
                 },
@@ -75,7 +69,7 @@ export async function PATCH(request: NextRequest) {
         else {
             return NextResponse.json(
                 {
-                    message: "Fail to Update User",
+                    message: "Fail to Update Merchant",
                     state: false,
                     update: null
                 },

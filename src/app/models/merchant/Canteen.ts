@@ -5,9 +5,6 @@ const CanteenSchema = new Schema({
         type: String,
         required: true
     },
-    searchId: {
-        type: mongoose.Types.ObjectId,
-    },
     location: {
         type: String,
         required: true

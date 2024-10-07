@@ -1,5 +1,5 @@
 import { navbar_option } from "@/app/lib/content/customer/main";
-import { logOut } from "@/app/controller/user";
+import { customerLogOut } from "@/app/controller/customer";
 import Cart from "@/app/lib/icon/cart";
 import Delivery from "@/app/lib/icon/delivery";
 import LogOut from "@/app/lib/icon/logout";
@@ -56,7 +56,7 @@ export default function Option() {
                         </div>
                         <div
                             className="flex flex-row hover:bg-yellow-300 rounded-b-2xl items-center p-3 space-x-2 cursor-pointer border boder-1 border-gray-100 border-l-0 border-r-0 border-b-0"
-                            onClick={e => { router.push("/"); logOut() }}>
+                            onClick={e => { router.push("/"); customerLogOut() }}>
                             <LogOut size={30} stroke={2} />
                             <p className="font-medium">Keluar</p>
                         </div>

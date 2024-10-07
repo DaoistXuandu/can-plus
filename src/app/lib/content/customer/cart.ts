@@ -10,8 +10,8 @@ const main = {
 }
 
 const delivery = {
-    title: "Pengiriman",
-    type: ["Ambil Sendiri", "Diantar"],
+    title: "Waktu Pengiriman",
+    type: ["12.00-13.00", "13.00-14.00", '14.00-15.00'],
     location: "Lokasi",
     time: "Waktu Pengiriman",
     button_comment: "Konfirmasi"

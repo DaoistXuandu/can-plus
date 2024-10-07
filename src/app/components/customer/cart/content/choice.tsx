@@ -15,6 +15,7 @@ export default function Choice(
                 flex 
                 flex-row 
                 items-center 
+                flex-grow
                 rounded-xl
                 space-x-4 
                 text-md

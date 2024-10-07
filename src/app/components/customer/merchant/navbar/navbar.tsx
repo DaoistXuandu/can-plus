@@ -5,19 +5,43 @@ import Menu from "@/app/lib/icon/menu";
 import { useEffect, useState } from "react";
 import Location from "@/app/lib/icon/location";
 import Clock from "@/app/lib/icon/clock";
-import { data } from "@/app/lib/content/setting";
-import { stall } from "@/app/lib/content/customer/restaurant";
 import Star from "@/app/lib/icon/star";
 import DropDown from "@/app/lib/icon/dropdown";
 import { useRouter } from "next/navigation";
+import { sectionGetAll } from "@/app/controller/section";
 
-export default function NavBar() {
+export default function NavBar({ id, merchant }: {
+    id: string,
+    merchant: {
+        canteen: string,
+        name: string,
+        image: string,
+        description: string,
+        rating: string,
+        time_open: Date,
+        time_close: Date,
+        email: string,
+        telephone: string
+    }
+}) {
     const [statusMenu, setStatusMenu] = useState(false)
     const [zStatus, setZStatus] = useState(true)
     const [menu, setMenu] = useState(0)
     const [menuOption, setMenuOption] = useState(false)
+    const [section, setSection] = useState<{ name: string }[]>([{ name: "" }])
+    const [load, setLoad] = useState(null)
 
     const router = useRouter()
+
+    async function getSection() {
+        const sections = await sectionGetAll(id);
+        if (sections != null)
+            setSection(sections)
+    }
+
+    useEffect(() => {
+        getSection()
+    }, [load])
 
     useEffect(() => {
         if (statusMenu == true)
@@ -27,6 +51,15 @@ export default function NavBar() {
                 setZStatus(true)
         }, 800)
     }, [statusMenu])
+
+    function formatDate(date: number) {
+        if (date < 10)
+            return "0" + date
+        else
+            return date;
+    }
+
+
 
     return (
         <div style={{ backgroundColor: "#ECF0F1" }} className="z-20 w-full pb-3">
@@ -76,9 +109,13 @@ export default function NavBar() {
                                 className="flex flex-row space-x-4 md:space-x-0">
                                 <div className="flex flex-row text-sm space-x-2 items-center">
                                     <p><Clock size={20} /></p>
-                                    <p>{stall[0].time.open}</p>
+                                    <p>
+                                        {formatDate((new Date(merchant.time_open)).getHours())}:{formatDate((new Date(merchant.time_open)).getMinutes())}
+                                    </p>
                                     <p>-</p>
-                                    <p>{stall[0].time.close}</p>
+                                    <p>
+                                        {formatDate((new Date(merchant.time_close)).getHours())}:{formatDate((new Date(merchant.time_close)).getMinutes())}
+                                    </p>
                                     <p>WIB</p>
                                 </div>
                                 <div
@@ -87,15 +124,15 @@ export default function NavBar() {
                                     <div className="lg:hidden">
                                         <Star size={20} stroke={2} />
                                     </div>
-                                    <h1 className="font-bold text-sm md:text-3xl">{stall[0].rating}</h1>
+                                    <h1 className="font-bold text-sm md:text-3xl">{merchant.rating}</h1>
                                 </div>
                             </div>
                             <div className="w-full flex flex-col lg:flex-row justify-start lg:items-end lg:space-x-2">
                                 <div className="flex flex-row">
-                                    <p className="font-bold text-4xl">{stall[0].name}</p>
+                                    <p className="font-bold text-4xl">{merchant.name}</p>
                                     <p className="font-bold text-4xl hidden lg:flex">,</p>
                                 </div>
-                                <p className="font-light text-lg md:text-2xl">{stall[0].location}</p>
+                                <p className="font-light text-lg md:text-2xl">{merchant.canteen}</p>
                             </div>
                         </div>
                     </div>
@@ -107,7 +144,7 @@ export default function NavBar() {
                         </div>
                         <div className="hidden md:flex flex-col">
                             <div className="flex flex-row items-center space-x-2">
-                                <h1 className="font-bold text-sm md:text-3xl">{stall[0].rating}</h1>
+                                <h1 className="font-bold text-sm md:text-3xl">{merchant.rating}</h1>
                                 <div className="lg:hidden">
                                     <Star size={30} stroke={2} />
                                 </div>
@@ -118,26 +155,29 @@ export default function NavBar() {
                 </div>
                 <div className="relative pl-3 pr-3 md:pl-10 md:pr-10 lg:pr-16 lg:pl-16 mt-5 select-none">
                     <div className="relative z-20 md:w-1/2 lg:w-1/3 h-fit cursor-pointer">
-                        <div
-                            onClick={e => setMenuOption(menuOption != true)}
-                            className={`
+                        {
+                            section.length == 0 ? "" :
+                                < div
+                                    onClick={e => setMenuOption(menuOption != true)}
+                                    className={`
                                 relative z-20
                                 ${menuOption ? "rounded-t-xl" : "rounded-xl"}  
                                 flex flex-row justify-start items-center 
                                 text-black 
                                 p-2 pr-10 pl-5
                                 w-full bg-white`}>
-                            <p className="w-full text-ellipsis overflow-hidden whitespace-nowrap">
-                                {stall[0].menu[menu].section}
-                            </p>
-                            <div className={`${menuOption ? 'rotate-180' : ''} absolute right-4 transition-all duration-700 `}>
-                                <DropDown size={20} stroke={2} />
-                            </div>
-                        </div>
+                                    <p className="w-full text-ellipsis overflow-hidden whitespace-nowrap">
+                                        {section[menu].name}
+                                    </p>
+                                    <div className={`${menuOption ? 'rotate-180' : ''} absolute right-4 transition-all duration-700 `}>
+                                        <DropDown size={20} stroke={2} />
+                                    </div>
+                                </div>
+                        }
                         <div className={`${menuOption ? '' : 'hidden'} transition-all duration-700 absolute text-black left-0 top-1/2 w-full bg-white`}>
                             <div className="mt-5 h-0">
                                 {
-                                    stall[0].menu.map((item, index) => (
+                                    section.map((item, index) => (
                                         <div
                                             className="
                                                 p-3 pl-5 pr-5 
@@ -145,9 +185,9 @@ export default function NavBar() {
                                                 border border-1 border-b-0 border-l-0 border-r-0
                                                 overflow-auto
                                             "
-                                            onClick={e => setMenu((menuOption ? index : menu))}
+                                            onClick={e => { setMenu(index); setMenuOption(false) }}
                                         >
-                                            {item.section}
+                                            {item.name}
                                         </div>
                                     ))
                                 }

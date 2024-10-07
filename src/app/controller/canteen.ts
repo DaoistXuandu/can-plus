@@ -1,8 +1,7 @@
 import mongoose from "mongoose"
 
-async function canteenGetByKeyword({
-    name
-}: { name: string }) {
+async function canteenGetByKeyword(
+    name: string) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/canteen/canteen-get-by-keyword`, {
         method: "PATCH",
         body: JSON.stringify({

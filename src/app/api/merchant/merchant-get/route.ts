@@ -3,10 +3,10 @@ import { sessionGet } from "@/app/lib/session";
 import Merchant from "@/app/models/merchant/Merchant";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export async function PATCH(request: NextRequest) {
     try {
         await connectToDB()
-        const id = sessionGet()
+        const { id } = await request.json()
         const merchant = await Merchant.findOne({
             _id: id
         })
