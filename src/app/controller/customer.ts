@@ -1,7 +1,3 @@
-import { response } from "express"
-import { headers } from "next/headers"
-import { data } from "../lib/content/setting"
-import { merchantGet } from "./merchant"
 
 async function customerCreate(username: string, password: string) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/customer/customer-create`, {
