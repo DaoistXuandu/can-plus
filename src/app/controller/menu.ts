@@ -1,6 +1,3 @@
-import { response } from "express"
-import { data } from "../lib/content/setting"
-
 async function menuGetAll(id: string) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/menu/menu-get-all`, {
         method: 'PATCH',
