@@ -1,4 +1,3 @@
-import { cartCreate } from "@/app/controller/cart";
 import { connectToDB } from "@/app/lib/dbConnect";
 import Customer from "@/app/models/customer/Customer";
 import mongoose from "mongoose";
