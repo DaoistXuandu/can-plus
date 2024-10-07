@@ -1,4 +1,3 @@
-import { stall } from "@/app/lib/content/customer/restaurant";
 import Menu from "./menu";
 import { bill, delivery, main } from "@/app/lib/content/customer/cart";
 import Choice from "./choice";

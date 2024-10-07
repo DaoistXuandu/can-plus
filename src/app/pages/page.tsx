@@ -1,9 +1,6 @@
 "use client"
 
 import { useEffect } from "react"
-import { cartCreate } from "../controller/cart"
-import { merchantCreate } from "../controller/merchant"
-import mongoose from "mongoose"
 
 export default function Test() {
     async function test() {
