@@ -1,7 +1,3 @@
-import { response } from "express"
-import { preconnect } from "react-dom"
-import { body } from "../lib/content/login"
-import { data } from "../lib/content/setting"
 
 async function orderCreate(menuId: string, quantity: number) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/order/order-create`, {

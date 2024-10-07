@@ -1,5 +1,3 @@
-import { response } from "express";
-import { storage } from "firebase-admin";
 
 async function paymentGet() {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/payment/payment-get-total`, {

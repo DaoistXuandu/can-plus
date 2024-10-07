@@ -1,4 +1,3 @@
-import { response } from "express";
 
 async function cookieGet({ name }:
     { name: string }) {
