@@ -22,9 +22,7 @@ export default function DropDownElement({
     }, [location])
 
     async function getData() {
-        const keyword = await canteenGetByKeyword({
-            name: value
-        })
+        const keyword = await canteenGetByKeyword(value)
         setData(keyword)
     }
 
