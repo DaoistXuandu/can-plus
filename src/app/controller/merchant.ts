@@ -1,4 +1,3 @@
-import { response } from "express"
 import mongoose from "mongoose"
 
 async function merchantCreate(canteen: string, name: string, image: string) {
