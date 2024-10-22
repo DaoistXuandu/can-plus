@@ -1,18 +1,26 @@
 import mongoose, { Schema } from 'mongoose';
 
-const transactionSchema = new Schema({
+const TransactionSchema = new Schema({
     customerId: {
         type: String,
-        required: true
-    },
-    orderId: {
-        type: String,
-        required: true
     },
     total: {
         type: Number,
-        required: true
     },
-}, { timestamps: false, versionKey: false });
+    status: {
+        type: Number,
+    },
+    time: {
+        type: String
+    },
+    link: {
+        type: String
+    },
+    midtransId: {
+        type: String
+    }
+}, { timestamps: true, versionKey: false });
 
-export default mongoose.models.transaction || mongoose.model("Transaction", transactionSchema);
+TransactionSchema.index({ customerId: 1 })
+
+export default mongoose.models.Transaction || mongoose.model("Transaction", TransactionSchema);

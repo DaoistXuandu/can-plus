@@ -1,5 +1,6 @@
 import { menuGet } from "@/app/controller/menu";
 import { orderCreate, orderGetComment, orderGetQuantity, orderUpdate, orderUpdateComment, orderUpdateQuantity } from "@/app/controller/order";
+import { paymentGet } from "@/app/controller/payment";
 import { main } from "@/app/lib/content/customer/cart";
 import Plus from "@/app/lib/icon/add";
 import Minus from "@/app/lib/icon/minus";
@@ -7,9 +8,9 @@ import Note from "@/app/lib/icon/note";
 import { useEffect, useRef, useState } from "react";
 
 export default function Menu({
-    id, orderId
+    id, orderId, fun
 }:
-    { id: string, orderId: string }
+    { id: string, orderId: string, fun: () => void }
 ) {
     const [menu, setMenu] = useState<{ name: string, price: string, image: string }>({ name: "", price: "", image: "" })
     const [value, setValue] = useState(-1)
@@ -22,6 +23,7 @@ export default function Menu({
     async function updateValue(currentValue: number) {
         if (value != 0) {
             await orderUpdateQuantity(orderId, currentValue)
+            fun()
             setValue(currentValue)
         }
         else {
@@ -31,7 +33,7 @@ export default function Menu({
     }
 
     async function updateComment(comment: string) {
-        orderUpdateComment(orderId, comment)
+        await orderUpdateComment(orderId, comment)
     }
 
     async function getData() {
@@ -50,11 +52,12 @@ export default function Menu({
     useEffect(() => {
         if (note != "")
             updateComment(note)
+
         const object = input.current as HTMLTextAreaElement
         object.style.height = "auto"
         object.style.height = object.scrollHeight + "px"
         if (note == "")
-            object.style.height = "50px"
+            object.style.height = "120px"
 
     }, [note])
 
@@ -63,7 +66,7 @@ export default function Menu({
             <div className="w-9/12 md:w-11/12 flex flex-col md:flex-row h-fit md:space-x-5 select-none overflow-auto items-center">
                 <div className="flex flex-row justify-start items-center w-full md:w-1/12">
                     <div className="w-1/4 md:w-full">
-                        <img src={menu.image} className="rounded-xl w-full aspect-square" alt="" />
+                        <img src={menu.image} className="object-cover rounded-xl w-full aspect-square" alt="" />
                     </div>
                 </div>
                 <div className="flex flex-col justify-center w-full md:w-11/12">
@@ -86,7 +89,7 @@ export default function Menu({
                         value={note}
                         readOnly={edit != true}
                         onChange={e => setNote(e.target.value)}
-                        className={`${((note == "" || note == null || note == undefined) && edit == false) ? "hidden" : ""} w-full h-40 rounded-xl text-md focus:outline-none mt-2 ${edit ? 'p-3 pl-5 pr-5' : ''} resize-none ${!edit ? 'cursor-pointer' : ''}`}></textarea>
+                        className={`${((note == "" || note == null || note == undefined) && edit == false) ? "hidden" : ""} w-full h-40 rounded-xl text-md min-h-fit focus:outline-none mt-2 ${edit ? 'p-3 pl-5 pr-5' : ''} resize-none ${!edit ? 'cursor-pointer' : ''}`}></textarea>
                 </div>
             </div>
             {

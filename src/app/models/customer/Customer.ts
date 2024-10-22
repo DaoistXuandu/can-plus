@@ -11,6 +11,8 @@ const CustomerSchema = new Schema({
         required: true
     },
     merchantCart: mongoose.Types.ObjectId,
+    transaction: mongoose.Types.ObjectId,
+
     name: String,
     telephone: String,
     email: String,

@@ -5,7 +5,7 @@ import Order from "@/app/models/customer/Order";
 import Section from "@/app/models/merchant/Section";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import { use } from "react";
+import { couldStartTrivia } from "typescript";
 
 export async function GET(request: NextRequest) {
     async function getMenu(id: string) {
@@ -27,14 +27,18 @@ export async function GET(request: NextRequest) {
             customerId: user
         })
 
+
         let food = 0
         for (let i = 0; i < order.length; i++) {
             const menu = await getMenu(order[i].menuId)
             food += order[i].quantity * Number(menu.price)
         }
 
-        let delivery = 1500
-        let total = food + delivery
+        // let delivery = 1500
+        let delivery = 3000
+        let cost = 1000
+        let total = food + delivery + cost
+
 
         if (order) {
             return NextResponse.json({

@@ -12,4 +12,6 @@ const CanteenSchema = new Schema({
     image: String,
 }, { timestamps: false, versionKey: false });
 
+CanteenSchema.index({ name: 1, location: 1, image: 1 })
+
 export default mongoose.models.Canteen || mongoose.model("Canteen", CanteenSchema);

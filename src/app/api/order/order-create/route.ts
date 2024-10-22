@@ -1,5 +1,7 @@
-import { menu } from "@/app/lib/content/customer/restaurant";
+import { customerUpdateTransaction } from "@/app/controller/customer";
+import { transactionCreate } from "@/app/controller/transaction";
 import { connectToDB } from "@/app/lib/dbConnect";
+import Customer from "@/app/models/customer/Customer";
 import Order from "@/app/models/customer/Order";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -9,14 +11,25 @@ export async function POST(request: NextRequest) {
         await connectToDB()
         const { menuId, quantity } = await request.json()
 
-        let customerId = null
+        let customer = null
         let env = process.env.NEXT_PUBLIC_SESSION
-        if (env)
-            customerId = cookies().get(env)?.value
+        if (env) {
+            let cookie = cookies().get(env)?.value
+            if (cookie)
+                customer = await Customer.findOne({ _id: cookie })
+        }
 
+        // if (customer != null && (customer.transaction == null || customer.transaction == "" || customer.transaction == undefined)) {
+        //     const transaction = await transactionCreate(customer._id)
+        //     const update = await Customer.findOneAndUpdate(
+        //         { _id: customer._id },
+        //         { transaction: transaction },
+        //         { new: true }
+        //     )
+        // }
 
         const order = await Order.create({
-            customerId: customerId,
+            customerId: customer._id,
             menuId: menuId,
             quantity: quantity
         })

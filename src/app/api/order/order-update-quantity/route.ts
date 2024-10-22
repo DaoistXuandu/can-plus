@@ -16,7 +16,7 @@ export async function PATCH(request: NextRequest) {
 
         let order = null
         if (quantity == 0) {
-            order = await Order.findByIdAndDelete(mongoose.Types.ObjectId.createFromHexString(orderId))
+            order = await Order.findOneAndDelete({ _id: orderId })
             if (order) {
                 return NextResponse.json({
                     message: "Succes to delete order",
@@ -29,7 +29,7 @@ export async function PATCH(request: NextRequest) {
         }
         else {
             order = await Order.findByIdAndUpdate(
-                mongoose.Types.ObjectId.createFromHexString(orderId),
+                { _id: orderId },
                 { quantity: quantity },
                 { new: true }
             )

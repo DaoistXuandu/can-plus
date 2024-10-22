@@ -109,13 +109,21 @@ export default function NavBar({ id, merchant }: {
                                 className="flex flex-row space-x-4 md:space-x-0">
                                 <div className="flex flex-row text-sm space-x-2 items-center">
                                     <p><Clock size={20} /></p>
-                                    <p>
-                                        {formatDate((new Date(merchant.time_open)).getHours())}:{formatDate((new Date(merchant.time_open)).getMinutes())}
-                                    </p>
+                                    {
+                                        merchant.time_open ?
+                                            <p>
+                                                {formatDate((new Date(merchant.time_open)).getHours())}:{formatDate((new Date(merchant.time_open)).getMinutes())}
+                                            </p>
+                                            :
+                                            ""
+                                    }
                                     <p>-</p>
-                                    <p>
-                                        {formatDate((new Date(merchant.time_close)).getHours())}:{formatDate((new Date(merchant.time_close)).getMinutes())}
-                                    </p>
+                                    {merchant.time_close ?
+                                        <p>
+                                            {formatDate((new Date(merchant.time_close)).getHours())}:{formatDate((new Date(merchant.time_close)).getMinutes())}
+                                        </p>
+                                        : ""
+                                    }
                                     <p>WIB</p>
                                 </div>
                                 <div

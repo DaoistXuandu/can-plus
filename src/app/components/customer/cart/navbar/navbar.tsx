@@ -1,25 +1,17 @@
-import { main_comment, navbar_logo_link } from "@/app/lib/content/customer/main";
+import { navbar_logo_link } from "@/app/lib/content/customer/main";
 import SearchBar from "./search/searchbar";
 import Option from "./option";
 import Menu from "@/app/lib/icon/menu";
 import { useEffect, useState } from "react";
-import Location from "@/app/lib/icon/location";
-import Clock from "@/app/lib/icon/clock";
-import { data } from "@/app/lib/content/setting";
-import Star from "@/app/lib/icon/star";
-import DropDown from "@/app/lib/icon/dropdown";
 import Shop from "@/app/lib/icon/shop";
 import { main } from "@/app/lib/content/customer/cart";
 import { useRouter } from "next/navigation";
 import { customerGetMerchant } from "@/app/controller/customer";
-import { useFormState } from "react-dom";
 import { merchantGet } from "@/app/controller/merchant";
 
 export default function NavBar() {
     const [statusMenu, setStatusMenu] = useState(false)
     const [zStatus, setZStatus] = useState(true)
-    const [menu, setMenu] = useState(0)
-    const [menuOption, setMenuOption] = useState(false)
     const [merchant, setMerchant] = useState<{ name: string, canteen: string }>({ name: "", canteen: "" })
     const router = useRouter()
 
@@ -88,18 +80,22 @@ export default function NavBar() {
                         </div>
                         <div className="flex flex-col space-y-1">
                             <h1 className="font-bold text-4xl md:text-5xl">{main.title}</h1>
-                            <div
-                                className="
+                            {merchant ?
+                                <div
+                                    className="
                                     text-black
                                     flex flex-col md:flex-row justify-start md:items-end md:space-x-3
                                 ">
-                                <div className="flex flex-row">
-                                    <h1 className="font-medium text-2xl">{merchant.name}</h1>
-                                    <p className="hidden md:flex font-medium text-xl md:text-2xl">,</p>
+                                    <div className="flex flex-row">
+                                        <h1 className="font-medium text-2xl">{merchant.name}</h1>
+                                        <p className="hidden md:flex font-medium text-xl md:text-2xl">,</p>
+                                    </div>
+                                    <p className="text-lg">{merchant.canteen}</p>
                                 </div>
-                                <p className="text-lg">{merchant.canteen}</p>
-                            </div>
 
+                                :
+                                ""
+                            }
                         </div>
                     </div>
                 </div>

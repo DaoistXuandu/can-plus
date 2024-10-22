@@ -5,7 +5,6 @@ import { sectionGetAll } from "@/app/controller/section";
 
 export default function Content({ id }: { id: string }) {
     const [data, setData] = useState<{ _id: string, name: string }[]>([{ _id: "", name: "" }])
-    const [load, setLoad] = useState(null)
 
     async function getData() {
         const result = await sectionGetAll(id)
@@ -14,7 +13,7 @@ export default function Content({ id }: { id: string }) {
 
     useEffect(() => {
         getData()
-    }, [load])
+    }, [id])
 
 
     return (

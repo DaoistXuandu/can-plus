@@ -1,3 +1,4 @@
+import { comment } from "postcss"
 import { delivery } from "./cart"
 
 const main = {
@@ -6,7 +7,15 @@ const main = {
 
 const status = [
     {
-        comment: "Menunggu Konfirmasi",
+        comment: "Kadaluarsa",
+        color: "#e74c3c"
+    },
+    {
+        comment: "Menunggu Dibayar",
+        color: "#cb4335",
+    },
+    {
+        comment: "Pembayaran Terkonfirmasi",
         color: "#b7950b"
     },
     {
@@ -32,7 +41,7 @@ const status_comment = {
     secondary: "Status pesanan akan otomatis menjadi terambil apabila telah lebih dari 30 menit!",
     section: [
         "Total",
-        "Waktu",
+        "Waktu Selesai",
         "Status",
         "Pesanan",
         "Catatan",

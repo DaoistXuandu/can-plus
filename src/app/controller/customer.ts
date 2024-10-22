@@ -36,9 +36,9 @@ async function customerGet() {
         }
     })
         .then(response => response.json())
-        .then(data => data)
+        .then(data => data.user)
 
-    return result.user
+    return result
 }
 
 async function customerCheck(username: string, password: string) {
@@ -96,7 +96,7 @@ async function customerLogOut() {
     return data.state
 }
 
-async function customerUpdateMerchant(id: string) {
+async function customerUpdateMerchant(id: string | null) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/customer/customer-update-merchant`, {
         method: 'PATCH',
         body: JSON.stringify({
@@ -107,7 +107,40 @@ async function customerUpdateMerchant(id: string) {
         }
     })
     const data = await result.json()
-    return data.customer
+    return data
 }
 
-export { customerCreate, customerGetMerchant, customerGet, customerUpdate, customerCheck, customerLogOut, customerUpdateMerchant }
+async function customerUpdateTransaction(transactionId: string) {
+    const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/customer/customer-update-transaction`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            transactionId: transactionId
+        }),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+    const data = await result.json()
+    return data.transaction
+}
+
+async function customerGetTransaction() {
+    const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/customer/customer-get-transaction`, {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => data)
+
+    return result.transaction
+}
+
+export {
+    customerCreate, customerGetMerchant,
+    customerGet, customerUpdate,
+    customerCheck, customerLogOut,
+    customerUpdateMerchant, customerGetTransaction,
+    customerUpdateTransaction
+}

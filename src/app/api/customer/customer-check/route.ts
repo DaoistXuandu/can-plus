@@ -12,7 +12,11 @@ export async function PATCH(request: NextRequest) {
         if (user) {
             const session = process.env.NEXT_PUBLIC_SESSION
             if (session)
-                cookies().set(session, user._id)
+                cookies().set({
+                    name: session,
+                    value: user._id,
+                    httpOnly: true
+                })
 
             return NextResponse.json({
                 message: "Found Unique User",

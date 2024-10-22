@@ -1,3 +1,4 @@
+import { canteen } from '@/app/lib/content/customer/canteen';
 import mongoose, { Schema } from 'mongoose';
 
 const MerchantSchema = new Schema({
@@ -23,5 +24,7 @@ const MerchantSchema = new Schema({
     email: String,
     telephone: String
 }, { timestamps: false, versionKey: false });
+
+MerchantSchema.index({ name: 1, canteen: 1 })
 
 export default mongoose.models.Merchant || mongoose.model("Merchant", MerchantSchema);

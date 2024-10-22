@@ -118,4 +118,40 @@ async function orderUpdateComment(orderId: string, comment: string) {
     return result.comment
 }
 
-export { orderCreate, orderUpdate, orderGetAll, orderGetComment, orderGetQuantity, orderDeleteMenu, orderUpdateQuantity, orderUpdateComment }
+async function orderChangeCustomer(id: string) {
+    const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/order/order-change-customer`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            transactionId: id
+        }),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => data)
+    return result
+}
+
+async function orderGetAllTransaction(id: string) {
+    const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/order/order-get-all-transaction`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            transactionId: id
+        }),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(data => data)
+    return result.order
+}
+
+export {
+    orderCreate, orderUpdate,
+    orderGetAll, orderGetComment,
+    orderGetQuantity, orderDeleteMenu,
+    orderUpdateQuantity, orderUpdateComment,
+    orderChangeCustomer, orderGetAllTransaction
+}

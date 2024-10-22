@@ -1,5 +1,6 @@
 import { connectToDB } from "@/app/lib/dbConnect";
 import Customer from "@/app/models/customer/Customer";
+import Transaction from "@/app/models/Transaction";
 import mongoose from "mongoose";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";

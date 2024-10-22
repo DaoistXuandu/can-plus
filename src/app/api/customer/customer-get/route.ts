@@ -7,31 +7,30 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
     try {
         await connectToDB()
-        const session = process.env.NEXT_PUBLIC_SESSION
-        let cookie = null
-        if (session)
-            cookie = cookies().get("set-session-canplus")
 
-        if (cookie) {
-            let value = cookie.value;
-            let id = mongoose.Types.ObjectId.createFromHexString(value);
-            const user = await Customer.findById(id)
-            if (user) {
+        let id = null
+        if (process.env.NEXT_PUBLIC_SESSION) {
+            id = cookies().get(process.env.NEXT_PUBLIC_SESSION)
+        }
+
+        if (id) {
+            const customer = await Customer.findOne({ _id: id.value })
+            if (customer) {
                 return NextResponse.json({
-                    message: "Found Unique User",
-                    user: user,
-                    state: true
+                    message: "Succes to get customer",
+                    state: true,
+                    user: customer
                 }, { status: 200 })
             }
-            else throw "Didn't found user"
+            else throw "Fail to get customer"
         }
         else {
-            throw "Session invalid"
+            throw "Invalid cookies"
         }
     }
     catch (err) {
         return NextResponse.json({
-            message: err,
+            message: "Err: " + err,
             user: null,
             state: false
         }, { status: 400 })

@@ -15,8 +15,8 @@ export async function PATCH(request: NextRequest) {
             customerId = cookies().get(env)?.value
 
         let order = null
-        order = await Order.findByIdAndUpdate(
-            mongoose.Types.ObjectId.createFromHexString(orderId),
+        order = await Order.findOneAndUpdate(
+            { _id: orderId },
             { comment: comment },
             { new: true }
         )

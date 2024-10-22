@@ -1,4 +1,4 @@
-import { customerGetMerchant, customerUpdateMerchant } from "@/app/controller/customer";
+import { customerGet, customerGetMerchant, customerUpdateMerchant } from "@/app/controller/customer";
 import { orderCreate, orderDeleteMenu, orderGetQuantity, orderUpdate } from "@/app/controller/order";
 import { confirm_alert, ok_alert } from "@/app/lib/alert";
 import Plus from "@/app/lib/icon/add";
@@ -17,7 +17,6 @@ export default function Menu({
 ) {
     const [value, setValue] = useState(0);
     const [buffer, setBuffer] = useState(false)
-    const [currentMerchant, setCurrentMerchant] = useState(merchantId)
 
     async function getQuantity() {
         const quantity = await orderGetQuantity(menuId)
@@ -28,15 +27,7 @@ export default function Menu({
         if (buffer)
             return null
 
-        if (currentMerchant != merchantId) {
-            const a = await confirm_alert("Merubah Pesanan", "Apakah kamu mau melupakan pesanan pada toko sebelumnya?")
-            if (a) {
-                orderDeleteMenu(merchantId)
-                await customerUpdateMerchant(merchantId)
-            }
-            else return
-        }
-
+        const currentMerchant = await customerGetMerchant()
         if (value != 0) {
             setBuffer(true)
             orderUpdate(menuId, item, null)
@@ -44,6 +35,18 @@ export default function Menu({
             setBuffer(false)
         }
         else {
+            if (currentMerchant == null) {
+                await customerUpdateMerchant(merchantId)
+            }
+            else if (currentMerchant != merchantId) {
+                const confirm = await confirm_alert("Merubah Pesanan", "Apakah kamu mau melupakan pesanan pada toko sebelumnya?")
+                if (confirm) {
+                    await orderDeleteMenu(merchantId)
+                    await customerUpdateMerchant(merchantId)
+                }
+                else return
+            }
+
             setBuffer(true)
             const data = await orderCreate(menuId, item)
             setValue(1)
@@ -52,10 +55,6 @@ export default function Menu({
         }
     }
 
-    async function getCustomerMerchant() {
-        const current = await customerGetMerchant()
-        setCurrentMerchant(current)
-    }
 
     function add() {
         updateQuantity(value + 1)
@@ -67,7 +66,6 @@ export default function Menu({
     }
 
     useEffect(() => {
-        getCustomerMerchant()
         getQuantity()
     }, [menuId])
 
