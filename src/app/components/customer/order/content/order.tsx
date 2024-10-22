@@ -72,12 +72,12 @@ export default function Order({ id, total, time, midtrans }
                 <div className={`flex flex-row items-center ${pickup ? '' : 'hidden'}`}>
                     <p className="w-4/12 md:w-2/12 font-medium text-lg md:text-xl">{status_comment.section[5]}</p>
                     <p>:</p>
-                    <p className="ml-4 font-medium text-md md:text-lg">Rp {3.000}</p>
+                    <p className="ml-4 font-medium text-md md:text-lg">Rp 3.000</p>
                 </div>
                 <div className="flex flex-row items-center">
                     <p className="w-4/12 md:w-2/12 font-medium text-lg md:text-xl">Biaya Layanan</p>
                     <p>:</p>
-                    <p className="ml-4 font-medium text-md md:text-lg">Rp {1.000}</p>
+                    <p className="ml-4 font-medium text-md md:text-lg">Rp 1.000</p>
                 </div>
                 <div className="flex flex-row items-center">
                     <p className="w-4/12 md:w-2/12 font-medium text-lg md:text-xl">{status_comment.section[1]}</p>
