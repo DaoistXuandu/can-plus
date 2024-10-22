@@ -28,17 +28,17 @@ export default function Location() {
                         </div>
                         <p className="font-bold">{location_icon_search}</p>
                     </a>
-                    <div className="flex flex-row lg:space-x-4 bg-yellow-600 text-white border border-2 pl-12 pr-12 pt-3 pb-3 rounded-full justify-center items-center hover:bg-transparent hover:border-yellow-600 hover:text-yellow-600 cursor-pointer">
+                    <a href="https://wa.me/6285157860551" className="flex flex-row lg:space-x-4 bg-yellow-600 text-white border border-2 pl-12 pr-12 pt-3 pb-3 rounded-full justify-center items-center hover:bg-transparent hover:border-yellow-600 hover:text-yellow-600 cursor-pointer">
                         <div className="hidden lg:flex">
                             <PhoneIcon width={30} height={30} stroke={2} />
                         </div>
                         <p className="font-bold">{location_icon_phone}</p>
-                    </div>
+                    </a>
                 </div>
             </div>
             <a href={canPlus_location} className="md:w-1/2 flex justify-center hidden md:flex">
                 <img src="./image/dashboard_3.png" alt="" />
             </a>
-        </div>
+        </div >
     )
 }
