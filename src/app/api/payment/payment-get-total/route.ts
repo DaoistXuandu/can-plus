@@ -7,7 +7,9 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { couldStartTrivia } from "typescript";
 
-export async function GET(request: NextRequest) {
+export async function PATCH(request: NextRequest) {
+    const { status } = await request.json()
+
     async function getMenu(id: string) {
         const data = await menuGet(id)
         return data
@@ -35,7 +37,7 @@ export async function GET(request: NextRequest) {
         }
 
         // let delivery = 1500
-        let delivery = 3000
+        let delivery = 3000 * (status ? 1 : 0)
         let cost = 1000
         let total = food + delivery + cost
 

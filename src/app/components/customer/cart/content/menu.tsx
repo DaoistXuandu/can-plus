@@ -1,6 +1,5 @@
 import { menuGet } from "@/app/controller/menu";
 import { orderCreate, orderGetComment, orderGetQuantity, orderUpdate, orderUpdateComment, orderUpdateQuantity } from "@/app/controller/order";
-import { paymentGet } from "@/app/controller/payment";
 import { main } from "@/app/lib/content/customer/cart";
 import Plus from "@/app/lib/icon/add";
 import Minus from "@/app/lib/icon/minus";

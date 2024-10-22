@@ -1,16 +1,8 @@
-import Menu from "./menu";
-import { bill, delivery, main } from "@/app/lib/content/customer/cart";
 import { useEffect, useState } from "react";
-import { orderChangeCustomer, orderGetAll } from "@/app/controller/order";
-import { paymentCreateClient, paymentGet, paymentVerify } from "@/app/controller/payment";
+import { paymentVerify } from "@/app/controller/payment";
 import { useRouter } from "next/navigation";
-import { customerGetTransaction, customerUpdateMerchant } from "@/app/controller/customer";
-import { transactionCreate, transactionDelete, transactionGet, transactionUpdateStatus } from "@/app/controller/transaction";
-import { status } from "@/app/lib/content/customer/order";
-import { data } from "@/app/lib/content/setting";
-import exp from "constants";
+import { transactionGet, transactionUpdateStatus } from "@/app/controller/transaction";
 import { error_alert, ok_alert } from "@/app/lib/alert";
-import { Titillium_Web } from "next/font/google";
 
 export default function Content({ id }: { id: string }) {
 

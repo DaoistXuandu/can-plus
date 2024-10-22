@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
     if (cookies().has("set-session-canplus")) {
-        if (request.nextUrl.pathname == '/')
+        if (request.nextUrl.pathname == '/pages/login' || request.nextUrl.pathname == '/pages/signUp')
             return NextResponse.redirect(new URL('/pages/customer/main', request.url))
     }
     else {

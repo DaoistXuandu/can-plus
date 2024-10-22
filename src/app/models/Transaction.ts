@@ -18,6 +18,9 @@ const TransactionSchema = new Schema({
     },
     midtransId: {
         type: String
+    },
+    delivery: {
+        type: Boolean
     }
 }, { timestamps: true, versionKey: false });
 

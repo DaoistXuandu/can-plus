@@ -8,6 +8,8 @@ import { sectionGet } from "@/app/controller/section";
 import { merchantGet } from "@/app/controller/merchant";
 import { comment } from "postcss";
 import { paymentVerify } from "@/app/controller/payment";
+import { delivery } from "@/app/lib/content/customer/cart";
+import { Condiment } from "next/font/google";
 
 export default function Order({ id, total, time, midtrans }
     :
@@ -21,14 +23,19 @@ export default function Order({ id, total, time, midtrans }
     const [merchant, setMerchant] = useState("")
     const [currentStatus, setCurrentStatus] = useState(1);
     const [order, setOrder] = useState<{ name: string, price: string, comment: string, quantity: number }[]>([])
+    const [pickup, setPickup] = useState(false)
 
     async function getOrder(transactionId: string) {
         const orders = await orderGetAllTransaction(transactionId)
         const data = await transactionGet(transactionId)
         const status = data.transaction.status
         setCurrentStatus(status)
+        if (data.transaction.delivery != null) {
+            setPickup(data.transaction.delivery)
+        }
 
         const current_order = []
+
 
         for (const order of orders) {
             const menu = await menuGet(order.menuId)
@@ -46,7 +53,7 @@ export default function Order({ id, total, time, midtrans }
             current_order.push(data)
         }
 
-        setOrder(current_order)
+        setOrder(current_order.reverse())
     }
 
     useEffect(() => {
@@ -62,15 +69,15 @@ export default function Order({ id, total, time, midtrans }
                     <p>:</p>
                     <p className="ml-4 font-medium text-md md:text-lg">Rp {total.toLocaleString("DE-de")}</p>
                 </div>
-                <div className="flex flex-row items-center">
+                <div className={`flex flex-row items-center ${pickup ? '' : 'hidden'}`}>
                     <p className="w-4/12 md:w-2/12 font-medium text-lg md:text-xl">{status_comment.section[5]}</p>
                     <p>:</p>
-                    <p className="ml-4 font-medium text-md md:text-lg">Rp {3000}</p>
+                    <p className="ml-4 font-medium text-md md:text-lg">Rp {3.000}</p>
                 </div>
                 <div className="flex flex-row items-center">
                     <p className="w-4/12 md:w-2/12 font-medium text-lg md:text-xl">Biaya Layanan</p>
                     <p>:</p>
-                    <p className="ml-4 font-medium text-md md:text-lg">Rp {1000}</p>
+                    <p className="ml-4 font-medium text-md md:text-lg">Rp {1.000}</p>
                 </div>
                 <div className="flex flex-row items-center">
                     <p className="w-4/12 md:w-2/12 font-medium text-lg md:text-xl">{status_comment.section[1]}</p>
@@ -103,7 +110,7 @@ export default function Order({ id, total, time, midtrans }
                     </div>
                 </div>
                 <a href="https://wa.me/6285157860551" className={`${currentStatus < 2 ? 'hidden' : ''} flex flex-row items-center  cursor-pointer`}>
-                    <p className="w-4/12 md:w-2/12 font-medium text-lg md:text-xl">Chat dengan kurir</p>
+                    <p className="w-4/12 md:w-2/12 font-medium text-lg md:text-xl">Chat dengan {pickup ? 'kurir' : 'penjual'}</p>
                     <p>:</p>
                     <p className="ml-4 font-medium text-md md:text-lg cursor-pointer font-black">wa.me/6285157860551</p>
                 </a>

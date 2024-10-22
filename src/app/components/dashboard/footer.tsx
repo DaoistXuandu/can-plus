@@ -25,10 +25,6 @@ export default function Footer() {
                                 <Whatsaap size={30} />
                                 <p className="text-lg">{footer_hotline.whatsaap}</p>
                             </div>
-                            <div className="flex flex-row space-x-2">
-                                <Line size={30} />
-                                <p className="text-lg">{footer_hotline.line}</p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -37,18 +33,14 @@ export default function Footer() {
                         {footer_social.title}
                     </h1>
                     <div className="flex flex-col space-y-2">
-                        <div className="flex flex-row space-x-2 items-center">
-                            <Twitter size={40} />
-                            <p className="">{footer_social.twitter}</p>
-                        </div>
-                        <div className="flex flex-row space-x-2 items-center">
+                        <a href="https://www.instagram.com/canplus.official/" className="flex flex-row space-x-2 items-center">
                             <Instagram size={40} />
-                            <p>{footer_social.instagram}</p>
-                        </div>
-                        <div className="flex flex-row space-x-2 items-center">
+                            <p>canplus.official</p>
+                        </a>
+                        <a href="https://www.youtube.com/@canplus-official" className="flex flex-row space-x-2 items-center">
                             <Youtube size={40} />
-                            <p>{footer_social.youtube}</p>
-                        </div>
+                            <p>canplus</p>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -1,13 +1,14 @@
 import { link, stat } from "fs"
 import { data } from "../lib/content/setting"
 
-async function transactionCreate(total: number, status: number, time: string) {
+async function transactionCreate(total: number, status: number, time: string, delivery: boolean) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/transaction/transaction-create`, {
         method: 'POST',
         body: JSON.stringify({
             total: total,
             status: status,
-            time: time
+            time: time,
+            delivery: delivery
         }),
         headers: {
             'content-type': 'application/json'
@@ -36,6 +37,25 @@ async function transactionUpdate(transactionId: string, link: string, midtransId
         .catch(data => data)
     return result
 }
+
+
+async function transactionUpdateDelivery(transactionId: string, delivery: boolean) {
+    const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/transaction/transaction-update-delivery`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            transactionId: transactionId,
+            delivery: delivery
+        }),
+        headers: {
+            'content-type': 'application/json'
+        },
+    })
+        .then(response => response.json())
+        .then(data => data)
+        .catch(data => data)
+    return result
+}
+
 
 async function transactionUpdateStatus(transactionId: string, status: number) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/transaction/transaction-update-status`, {
@@ -99,4 +119,4 @@ async function transactionDelete(transactionId: string) {
     return result
 }
 
-export { transactionCreate, transactionGetAll, transactionGet, transactionUpdateStatus, transactionUpdate, transactionDelete }
+export { transactionCreate, transactionGetAll, transactionGet, transactionUpdateStatus, transactionUpdate, transactionUpdateDelivery, transactionDelete }

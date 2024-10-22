@@ -27,12 +27,11 @@ export default function Menu({
         if (buffer)
             return null
 
+        setBuffer(true)
         const currentMerchant = await customerGetMerchant()
         if (value != 0) {
-            setBuffer(true)
             orderUpdate(menuId, item, null)
             setValue(item)
-            setBuffer(false)
         }
         else {
             if (currentMerchant == null) {
@@ -47,12 +46,10 @@ export default function Menu({
                 else return
             }
 
-            setBuffer(true)
             const data = await orderCreate(menuId, item)
             setValue(1)
-            setBuffer(false)
-
         }
+        setBuffer(false)
     }
 
 

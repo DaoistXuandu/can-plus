@@ -6,18 +6,20 @@ import { orderChangeCustomer, orderGetAll } from "@/app/controller/order";
 import { paymentCreateClient, paymentGet } from "@/app/controller/payment";
 import { useRouter } from "next/navigation";
 import { customerGetTransaction, customerUpdateMerchant } from "@/app/controller/customer";
-import { transactionCreate, transactionUpdate } from "@/app/controller/transaction";
+import { transactionCreate, transactionUpdate, transactionUpdateDelivery } from "@/app/controller/transaction";
 import { status } from "@/app/lib/content/customer/order";
+import { data } from "@/app/lib/content/setting";
 
 export default function Content() {
 
     const [menu, setMenu] = useState<{ _id: string, menuId: string }[]>([])
     const [transactionId, setTransactionId] = useState("")
-    const [choice, setchoice] = useState(0)
+    const [choice, setChoice] = useState(0)
     const [total, setTotal] = useState(0)
     const [food, setFood] = useState(0)
     const [fare, setFare] = useState(0)
     const [buffer, setBuffer] = useState(false)
+    const [pickup, setPickup] = useState(0)
 
     const router = useRouter()
 
@@ -31,12 +33,20 @@ export default function Content() {
     }
 
     async function fun() {
-        const data = await paymentGet()
-        setTotal(data.total)
+        const data = await getPrice()
     }
 
+    async function updateDelivery() {
+        await transactionUpdateDelivery(transactionId, pickup != 0).then(e => console.log("T", e))
+    }
+
+    useEffect(() => {
+        updateDelivery()
+        getPrice()
+    }, [pickup])
+
     async function getPrice() {
-        const data = await paymentGet()
+        const data = await paymentGet(pickup != 0)
         if (data.state) {
             setTotal(data.total)
             setFare(data.delivery)
@@ -46,7 +56,7 @@ export default function Content() {
 
     async function handlePayment() {
         setBuffer(true)
-        const transaction = await transactionCreate(total, 1, delivery.type[choice]).catch(e => console.log(e));
+        const transaction = await transactionCreate(total, 1, delivery.type[choice], pickup != 0).catch(e => console.log(e));
         await customerUpdateMerchant(null)
         await orderChangeCustomer(transaction._id)
         const data = await paymentCreateClient({ transactionId: transaction._id, total: total })
@@ -84,9 +94,16 @@ export default function Content() {
                         <div className="text-black pl-5 pr-5 mt-5 md:mt-5 md:pl-10 md:pr-10 lg:pl-16 lg:pr-16 flex flex-col space-y-5 pb-10">
                             <h1 className="font-bold text-3xl md:text-4xl">{delivery.title}/Pengambilan</h1>
                             <div className="flex lg:flex-row lg:space-x-8 flex-col space-y-4 lg:space-y-0">
-                                <Choice name={delivery.type[0]} index={0} choice={choice} setStatus={setchoice} />
-                                <Choice name={delivery.type[1]} index={1} choice={choice} setStatus={setchoice} />
-                                <Choice name={delivery.type[2]} index={2} choice={choice} setStatus={setchoice} />
+                                <Choice name={delivery.type[0]} index={0} choice={choice} setStatus={setChoice} />
+                                <Choice name={delivery.type[1]} index={1} choice={choice} setStatus={setChoice} />
+                                <Choice name={delivery.type[2]} index={2} choice={choice} setStatus={setChoice} />
+                            </div>
+                        </div>
+                        <div className="text-black pl-5 pr-5 mt-5 md:mt-5 md:pl-10 md:pr-10 lg:pl-16 lg:pr-16 flex flex-col space-y-5 pb-10">
+                            <h1 className="font-bold text-3xl md:text-4xl">Opsi Pengambilan</h1>
+                            <div className="flex lg:flex-row lg:space-x-8 flex-col space-y-4 lg:space-y-0">
+                                <Choice name={"Ambil Sendiri"} index={0} choice={pickup} setStatus={setPickup} />
+                                <Choice name={"Diantarkan"} index={1} choice={pickup} setStatus={setPickup} />
                             </div>
                         </div>
                         <div className="text-black pl-5 pr-5 mt-10 md:mt-6 md:pl-10 md:pr-10 lg:pl-16 lg:pr-16 flex flex-col space-y-10 pb-10">
@@ -99,7 +116,7 @@ export default function Content() {
                                             <p className="pr-2">{bill.detail.food.comment}</p>
                                             <p>:</p>
                                         </div>
-                                        <div className="flex flex-row w-full justify-between">
+                                        <div className={`flex flex-row w-full justify-between ${pickup == 0 ? 'hidden' : ''}`}>
                                             <p>{bill.detail.delivery.comment}</p>
                                             <p>:</p>
                                         </div>
@@ -110,7 +127,7 @@ export default function Content() {
                                     </div>
                                     <div>
                                         <p>Rp {food.toLocaleString("DE-de")},00</p>
-                                        <p>Rp {fare.toLocaleString("DE-de")},00</p>
+                                        <p className={`${pickup == 0 ? 'hidden' : ''}`}>{fare.toLocaleString("DE-de")},00</p>
                                         <p>Rp 1.000,00</p>
                                     </div>
                                 </div>

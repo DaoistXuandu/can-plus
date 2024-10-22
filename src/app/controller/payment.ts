@@ -4,9 +4,12 @@ import { customerGet } from "./customer"
 import { menuGet } from "./menu"
 import { orderGetAll, orderGetAllTransaction } from "./order"
 
-async function paymentGet() {
+async function paymentGet(status: boolean) {
     const result = await fetch(`${process.env.NEXT_PUBLIC_PORT}/payment/payment-get-total`, {
-        method: 'GET',
+        method: 'PATCH',
+        body: JSON.stringify({
+            status: status
+        }),
         headers: {
             'content-type': 'application/json'
         }
