@@ -2,9 +2,7 @@
 
 import Content from "@/app/components/customer/main/content/content"
 import NavBar from "@/app/components/customer/main/navbar/navbar"
-import { main_content } from "@/app/lib/content/customer/main"
 import { maven_pro } from "@/app/lib/font"
-import { url } from "inspector"
 import { useEffect, useState } from "react"
 
 
@@ -19,6 +17,18 @@ export default function Main() {
         }, {
             type: "merchant",
             url: "66ef8c4a1239047321993eee"
+        },
+        {
+            type: "merchant",
+            url: "67187f7a94ef3289fea48675"
+        },
+        {
+            type: "merchant",
+            url: "671882f994ef3289fea486de"
+        },
+        {
+            type: "merchant",
+            url: "6718883d94ef3289fea48db5"
         },
         {
             type: "canteen",

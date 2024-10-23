@@ -52,17 +52,9 @@ export default function Stall({ id }: { id: String }) {
         }
     };
 
-    // useEffect(() => {
-    //     console.log(isOverflow)
-    // }, [isOverflow])
-
-    useEffect(() => {
-        // console.log("TEST", data)
-    }, [data])
-
     return (
         <div style={{ cursor: "pointer" }} className="cursor-pointer hover:shadow-md hover:scale-95 w-full md:w-3/12 h-60 bg-white flex grow flex-col rounded-2xl" onClick={e => (router.push(`/pages/customer/merchant/${id}`))} >
-            <div style={{ backgroundImage: `url(${data.image})` }} className="hidden md:flex relative z-0 w-full h-2/6 rounded-t-2xl">
+            <div style={{ backgroundImage: `url(${data ? data.image : ""})` }} className="hidden md:flex relative z-0 w-full h-2/6 rounded-t-2xl">
                 <img src={data ? data.image.toString() : ""} className="absolute top-1/2 md:right-1/2 lg:right-2/3 h-20 w-20 rounded-full" alt="" />
             </div>
             <div className="hidden md:flex w-full flex flex-row h-1/6">
@@ -82,7 +74,7 @@ export default function Stall({ id }: { id: String }) {
             </div>
             <div className="text-black h-3/6 p-5 flex flex-col gap-2">
                 <div>
-                    <img src={data.image.toString()} className="md:hidden w-20 h-20 rounded-full" alt="" />
+                    <img src={data ? data.image.toString() : ""} className="md:hidden w-20 h-20 rounded-full" alt="" />
                     {data ?
                         <h1 className="font-bold text-lg mt-2 md:mt-0">{data.name.toString()}</h1>
                         :
